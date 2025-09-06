@@ -34,13 +34,13 @@ const HarvestMode: React.FC = () => {
                 <button onClick={handlePrev} className="p-3 bg-white rounded-full shadow-md hover:bg-orange-50 transition transform hover:scale-110">
                     <Icon name="prev" />
                 </button>
-                <div className="text-center font-bold text-stone-500 w-20">
+                <div className="text-center font-bold text-stone-500 w-20 text-sm">
                     {currentIndex + 1} / {shuffledFormulas.length}
                 </div>
                 <button onClick={handleNext} className="p-3 bg-white rounded-full shadow-md hover:bg-orange-50 transition transform hover:scale-110">
                     <Icon name="next" />
                 </button>
-                 <button onClick={handleShuffle} className="px-5 py-3 bg-orange-500 text-white font-bold rounded-full shadow-lg hover:bg-orange-600 transition transform hover:scale-105 hover:shadow-orange-500/30">
+                 <button onClick={handleShuffle} className="px-5 py-3 bg-orange-500 text-white font-bold rounded-full shadow-lg hover:bg-orange-600 transition transform hover:scale-105 hover:shadow-orange-500/30 text-sm">
                     Barajar
                 </button>
             </div>
