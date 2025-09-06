@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { QUIZ_QUESTIONS, DAX_FORMULAS, SYNTAX_QUIZ_QUESTIONS } from '../constants';
 import { shuffleArray } from '../utils';
 import { QuizQuestion } from '../types';
@@ -41,6 +41,7 @@ const QuizMode: React.FC = () => {
     const [isQuizFinished, setIsQuizFinished] = useState(false);
     const [questionStartTime, setQuestionStartTime] = useState(0);
     const [pointsAwarded, setPointsAwarded] = useState(0);
+    const titleRef = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
         // When an answer is selected, scroll to the bottom of the page to reveal the explanation.
@@ -54,6 +55,17 @@ const QuizMode: React.FC = () => {
             return () => clearTimeout(timer);
         }
     }, [answerState]);
+    
+    useEffect(() => {
+        // When the challenge selection screen loads, scroll to the title,
+        // hiding the "Back to Menu" button which becomes accessible on scroll up.
+        if (!quizType && titleRef.current) {
+            const timer = setTimeout(() => {
+                titleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100); 
+            return () => clearTimeout(timer);
+        }
+    }, [quizType]);
 
     const resetQuizState = () => {
         setCurrentQuestionIndex(0);
@@ -154,7 +166,7 @@ const QuizMode: React.FC = () => {
     if (!quizType) {
         return (
             <div className="max-w-5xl mx-auto text-center">
-                <h2 className="text-xl font-bold text-orange-500 mb-4 font-title">Elige tu Desafío</h2>
+                <h2 ref={titleRef} className="text-xl font-bold text-orange-500 mb-4 font-title">Elige tu Desafío</h2>
                 <p className="text-stone-600 mb-8 text-xs">Pon a prueba tus conocimientos de DAX de tres maneras diferentes.</p>
                 <div className="flex flex-col gap-3 md:gap-4 w-full max-w-3xl mx-auto">
                     <button
