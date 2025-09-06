@@ -224,7 +224,7 @@ const QuizMode: React.FC = () => {
                          {quizType === 'scenario' || quizType === 'syntax' ? (
                             <pre className="text-sm whitespace-pre-wrap break-words font-sans"><code>{option}</code></pre>
                         ) : (
-                            <code className="font-bold text-sm">{option}</code>
+                            <code className="text-sm">{option}</code>
                         )}
                     </button>
                 ))}

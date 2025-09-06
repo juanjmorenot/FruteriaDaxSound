@@ -22,7 +22,7 @@ const ModeSelector: React.FC<ModeSelectorProps> = ({ onSelectMode }) => {
         [GameMode.Harvest]: { description: 'Aprende cada fórmula a tu propio ritmo.', bgColor: 'bg-amber-500' },
         [GameMode.Glossary]: { description: 'Busca y explora todas las fórmulas en la bodega.', bgColor: 'bg-orange-500' },
         [GameMode.Timed]: { description: 'Memoriza antes de que se acabe el tiempo.', bgColor: 'bg-rose-500' },
-        [GameMode.Quiz]: { description: 'Pon a prueba tus conocimientos.', bgColor: 'bg-indigo-500' },
+        [GameMode.Quiz]: { description: 'Pon a prueba tus conocimientos como granjero.', bgColor: 'bg-indigo-500' },
     }
     
     return (

@@ -32,8 +32,8 @@ const Confetti: React.FC<ConfettiProps> = ({ numberOfPieces = 200 }) => {
                     size: Math.random() * 20 + 20, // Emoji font size
                     emoji: fruitEmojis[Math.floor(Math.random() * fruitEmojis.length)],
                     speedX: (Math.random() - 0.5) * 4, // Gentle horizontal drift
-                    speedY: Math.random() * 5 + 2, // Initial downward velocity
-                    gravity: 0.15, // Softer gravity for a more floaty effect
+                    speedY: Math.random() * 4.25 + 1.7, // Initial downward velocity (15% slower)
+                    gravity: 0.13, // Softer gravity for a more floaty effect (15% slower)
                     rotation: Math.random() * 360,
                     rotationSpeed: (Math.random() - 0.5) * 10
                 });
