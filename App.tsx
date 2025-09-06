@@ -36,7 +36,7 @@ const App: React.FC = () => {
     return (
         <div className="min-h-screen bg-neutral-50 text-stone-700 flex flex-col">
             {selectedMode === null && <Header />}
-            <main className="container mx-auto p-4 md:p-8 flex-grow flex flex-col justify-center">
+            <main className={`container mx-auto p-4 md:p-8 flex-grow flex flex-col ${selectedMode === null ? 'justify-center' : 'justify-start'}`}>
                 {selectedMode === null ? (
                     <ModeSelector onSelectMode={handleSelectMode} />
                 ) : (
