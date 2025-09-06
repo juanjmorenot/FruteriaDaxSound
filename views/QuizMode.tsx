@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { QUIZ_QUESTIONS, DAX_FORMULAS } from '../constants';
 import { shuffleArray } from '../utils';
 import { QuizQuestion } from '../types';
@@ -40,13 +40,16 @@ const QuizMode: React.FC = () => {
     const [isQuizFinished, setIsQuizFinished] = useState(false);
     const [questionStartTime, setQuestionStartTime] = useState(0);
     const [pointsAwarded, setPointsAwarded] = useState(0);
-    const explanationRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (answerState !== 'unanswered' && explanationRef.current) {
+        // When an answer is selected, scroll to the bottom of the page to reveal the explanation.
+        if (answerState !== 'unanswered') {
             const timer = setTimeout(() => {
-                explanationRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-            }, 100);
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }, 100); // Delay to allow DOM update
             return () => clearTimeout(timer);
         }
     }, [answerState]);
@@ -200,7 +203,7 @@ const QuizMode: React.FC = () => {
             </div>
 
             {answerState !== 'unanswered' && (
-                <div ref={explanationRef} className={`mt-6 p-4 rounded-xl ${answerState === 'correct' ? 'bg-teal-50 text-teal-900' : 'bg-rose-50 text-rose-900'}`}>
+                <div className={`mt-6 p-4 rounded-xl ${answerState === 'correct' ? 'bg-teal-50 text-teal-900' : 'bg-rose-50 text-rose-900'}`}>
                     <h3 className="font-bold text-base">{answerState === 'correct' ? `¡Correcto! +${pointsAwarded} puntos` : '¡Casi!'}</h3>
                     <p className="mt-1 text-sm">{currentQuestion.explanation}</p>
                     <button
