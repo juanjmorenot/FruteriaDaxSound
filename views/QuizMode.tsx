@@ -134,12 +134,12 @@ const QuizMode: React.FC = () => {
     if (isQuizFinished) {
         return (
             <div className="max-w-3xl mx-auto text-center p-8 bg-white rounded-3xl shadow-xl border border-stone-200/80">
-                <h2 className="text-2xl font-bold text-orange-500 mb-2">¡Desafío completado!</h2>
-                <p className="text-stone-600 text-base mb-6">Tu puntuación final es:</p>
-                <div className="text-5xl font-extrabold text-orange-500 mb-8">{score} puntos</div>
+                <h2 className="text-xl font-bold text-orange-500 mb-2">¡Desafío completado!</h2>
+                <p className="text-stone-600 text-sm mb-6">Tu puntuación final es:</p>
+                <div className="text-4xl font-extrabold text-orange-500 mb-8">{score} puntos</div>
                 <button 
                     onClick={handlePlayAgain} 
-                    className="px-8 py-3 bg-orange-500 text-white font-bold rounded-full shadow-lg hover:bg-orange-600 transition transform hover:scale-105 hover:shadow-orange-500/30 text-sm"
+                    className="px-8 py-3 bg-orange-500 text-white font-bold rounded-full shadow-lg hover:bg-orange-600 transition transform hover:scale-105 hover:shadow-orange-500/30 text-xs"
                 >
                     Jugar de Nuevo
                 </button>
@@ -150,22 +150,22 @@ const QuizMode: React.FC = () => {
     if (!quizType) {
         return (
             <div className="max-w-5xl mx-auto text-center">
-                <h2 className="text-2xl font-bold text-orange-500 mb-4">Elige tu Desafío</h2>
-                <p className="text-stone-600 mb-8 text-sm">Pon a prueba tus conocimientos de DAX de tres maneras diferentes.</p>
+                <h2 className="text-xl font-bold text-orange-500 mb-4">Elige tu Desafío</h2>
+                <p className="text-stone-600 mb-8 text-xs">Pon a prueba tus conocimientos de DAX de tres maneras diferentes.</p>
                 <div className="grid md:grid-cols-3 gap-8">
                     <button onClick={() => handleStartQuiz('scenario')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
-                        <span className="text-7xl" role="img" aria-label="chef">👨‍🍳</span>
-                        <h3 className="font-bold text-xl mt-4 text-stone-800">Consultas</h3>
+                        <span className="text-5xl" role="img" aria-label="chef">👨‍🍳</span>
+                        <h3 className="font-bold text-lg mt-4 text-stone-800">Consultas</h3>
                         <p className="text-xs mt-2 text-stone-500">Resuelve un problema de la frutería eligiendo la fórmula DAX correcta a partir de un caso práctico.</p>
                     </button>
                      <button onClick={() => handleStartQuiz('syntax')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
-                        <span className="text-7xl" role="img" aria-label="recipe book">📖</span>
-                        <h3 className="font-bold text-xl mt-4 text-stone-800">Recetas</h3>
+                        <span className="text-5xl" role="img" aria-label="recipe book">📖</span>
+                        <h3 className="font-bold text-lg mt-4 text-stone-800">Recetas</h3>
                         <p className="text-xs mt-2 text-stone-500">Identifica la sintaxis correcta de una fórmula DAX para dominar su estructura y parámetros.</p>
                     </button>
                     <button onClick={() => handleStartQuiz('usage')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
-                        <span className="text-7xl" role="img" aria-label="magnifying glass">🔎</span>
-                        <h3 className="font-bold text-xl mt-4 text-stone-800">Identificar la Fruta</h3>
+                        <span className="text-5xl" role="img" aria-label="magnifying glass">🔎</span>
+                        <h3 className="font-bold text-lg mt-4 text-stone-800">Identificar la Fruta</h3>
                         <p className="text-xs mt-2 text-stone-500">Te damos una descripción (el "uso") y debes identificar la fórmula correcta entre 6 opciones.</p>
                     </button>
                 </div>
@@ -180,33 +180,33 @@ const QuizMode: React.FC = () => {
     return (
         <div className="max-w-3xl mx-auto p-6 bg-white rounded-3xl shadow-xl border border-stone-200/80">
             <div className="flex justify-between items-center mb-4">
-                 <h2 className="text-2xl font-bold text-orange-500 flex items-center gap-3">
+                 <h2 className="text-xl font-bold text-orange-500 flex items-center gap-3">
                     {quizType === 'scenario' && 
                         <>
-                            <span className="text-3xl" role="img" aria-label="chef">👨‍🍳</span>
+                            <span className="text-2xl" role="img" aria-label="chef">👨‍🍳</span>
                             <span>Consultas</span>
                         </> 
                     }
                     {quizType === 'usage' &&
                         <>
-                            <span className="text-3xl" role="img" aria-label="magnifying glass">🔎</span>
+                            <span className="text-2xl" role="img" aria-label="magnifying glass">🔎</span>
                             <span>¿Qué fruta es?</span>
                         </>
                     }
                     {quizType === 'syntax' &&
                         <>
-                             <span className="text-3xl" role="img" aria-label="recipe book">📖</span>
+                             <span className="text-2xl" role="img" aria-label="recipe book">📖</span>
                             <span>Recetas</span>
                         </>
                     }
                 </h2>
-                <div className="font-bold text-stone-600 text-base">
+                <div className="font-bold text-stone-600 text-sm">
                     {currentQuestionIndex + 1}/{questions.length} | Puntos: {score}
                 </div>
             </div>
             
             <div className="mb-6 p-4 bg-orange-100/70 rounded-2xl">
-                <p className="font-semibold text-stone-800 text-lg leading-tight">{currentQuestion.scenario}</p>
+                <p className="font-semibold text-stone-800 text-base leading-tight">{currentQuestion.scenario}</p>
             </div>
 
             <div className={`grid ${quizType === 'usage' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 md:grid-cols-2'} gap-4`}>
@@ -218,9 +218,9 @@ const QuizMode: React.FC = () => {
                         className={`border-2 rounded-2xl transition duration-300 transform ${getButtonClass(option)} ${quizType === 'usage' ? 'text-center flex justify-center items-center py-2 px-1' : 'text-left p-3'}`}
                     >
                          {quizType === 'scenario' || quizType === 'syntax' ? (
-                            <pre className="text-base whitespace-pre-wrap break-words font-sans"><code>{option}</code></pre>
+                            <pre className="text-sm whitespace-pre-wrap break-words font-sans"><code>{option}</code></pre>
                         ) : (
-                            <code className="font-bold text-base">{option}</code>
+                            <code className="font-bold text-sm">{option}</code>
                         )}
                     </button>
                 ))}
@@ -228,11 +228,11 @@ const QuizMode: React.FC = () => {
 
             {answerState !== 'unanswered' && (
                 <div className={`mt-6 p-4 rounded-xl ${answerState === 'correct' ? 'bg-teal-50 text-teal-900' : 'bg-rose-50 text-rose-900'}`}>
-                    <h3 className="font-bold text-base">{answerState === 'correct' ? `¡Correcto! +${pointsAwarded} puntos` : '¡Casi!'}</h3>
-                    <p className="mt-1 text-sm">{currentQuestion.explanation}</p>
+                    <h3 className="font-bold text-sm">{answerState === 'correct' ? `¡Correcto! +${pointsAwarded} puntos` : '¡Casi!'}</h3>
+                    <p className="mt-1 text-xs">{currentQuestion.explanation}</p>
                     <button
                         onClick={handleNextQuestion}
-                        className="mt-4 px-6 py-2 bg-orange-500 text-white font-bold rounded-full shadow-md hover:bg-orange-600 transition text-sm"
+                        className="mt-4 px-6 py-2 bg-orange-500 text-white font-bold rounded-full shadow-md hover:bg-orange-600 transition text-xs"
                     >
                         {currentQuestionIndex < questions.length - 1 ? 'Siguiente Pregunta' : 'Finalizar'}
                     </button>
