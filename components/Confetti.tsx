@@ -4,7 +4,7 @@ interface ConfettiProps {
     numberOfPieces?: number;
 }
 
-const Confetti: React.FC<ConfettiProps> = ({ numberOfPieces = 250 }) => {
+const Confetti: React.FC<ConfettiProps> = ({ numberOfPieces = 200 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const animationFrameId = useRef<number | null>(null);
 
@@ -21,42 +21,50 @@ const Confetti: React.FC<ConfettiProps> = ({ numberOfPieces = 250 }) => {
         canvas.height = height;
 
         const particles: any[] = [];
-        const colors = ['#f97316', '#fb923c', '#fdba74', '#4ade80', '#a3e635', '#f43f5e', '#6366f1'];
+        const fruitEmojis = ['🍓', '🍊', '🫐', '🍐', '🍇', '🍒', '🍋', '🥝', '🍍', '🍉', '🍑', '🥭', '🍏'];
 
         const createParticles = () => {
             const pieces = numberOfPieces;
             for (let i = 0; i < pieces; i++) {
                 particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height * -1.5, // Start further above the screen
-                    w: Math.random() * 12 + 6,
-                    h: Math.random() * 10 + 5,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    speed: Math.random() * 4 + 4, // Increased speed
-                    speedX: Math.random() * 4 - 2, // Added horizontal speed
+                    x: Math.random() * width, // Start from random x positions across the top
+                    y: Math.random() * -height * 0.5 - 50, // Start at various heights above the screen
+                    size: Math.random() * 20 + 20, // Emoji font size
+                    emoji: fruitEmojis[Math.floor(Math.random() * fruitEmojis.length)],
+                    speedX: (Math.random() - 0.5) * 4, // Gentle horizontal drift
+                    speedY: Math.random() * 5 + 2, // Initial downward velocity
+                    gravity: 0.15, // Softer gravity for a more floaty effect
                     rotation: Math.random() * 360,
-                    rotationSpeed: Math.random() * 5 - 2.5 // Increased rotation speed
+                    rotationSpeed: (Math.random() - 0.5) * 10
                 });
             }
         };
 
         const draw = () => {
+            if (!ctx) return;
             ctx.clearRect(0, 0, width, height);
             
             particles.forEach((p, index) => {
                 ctx.save();
-                ctx.translate(p.x + p.w / 2, p.y + p.h / 2);
+                ctx.translate(p.x, p.y);
                 ctx.rotate(p.rotation * Math.PI / 180);
-                ctx.fillStyle = p.color;
-                ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                
+                ctx.font = `${p.size}px sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(p.emoji, 0, 0);
+                
                 ctx.restore();
 
-                p.y += p.speed; // Fall down
-                p.x += p.speedX; // Move sideways
+                // Apply physics
+                p.speedY += p.gravity;
+                
+                p.y += p.speedY;
+                p.x += p.speedX;
                 p.rotation += p.rotationSpeed;
                 
                 // Remove particle if it's off-screen
-                if (p.y > height || p.x < -p.w || p.x > width + p.w) {
+                if (p.y > height + p.size) {
                     particles.splice(index, 1);
                 }
             });
@@ -72,8 +80,10 @@ const Confetti: React.FC<ConfettiProps> = ({ numberOfPieces = 250 }) => {
         const handleResize = () => {
              width = window.innerWidth;
              height = window.innerHeight;
-             canvas.width = width;
-             canvas.height = height;
+             if (canvas) {
+                canvas.width = width;
+                canvas.height = height;
+             }
         }
 
         window.addEventListener('resize', handleResize);
