@@ -166,7 +166,7 @@ const QuizMode: React.FC = () => {
     if (!quizType) {
         return (
             <div className="max-w-5xl mx-auto text-center">
-                <div ref={titleRef} className="pt-[4.5vh]">
+                <div ref={titleRef} className="pt-[2.25vh]">
                     <h2 className="text-xl font-bold text-orange-500 mb-4 font-title">Elige tu Desafío</h2>
                 </div>
                 <p className="text-stone-600 mb-8 text-xs">Pon a prueba tus conocimientos de DAX de tres maneras diferentes.</p>
