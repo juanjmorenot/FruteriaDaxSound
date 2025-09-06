@@ -178,7 +178,7 @@ const QuizMode: React.FC = () => {
                         key={index}
                         onClick={() => handleAnswerClick(option)}
                         disabled={answerState !== 'unanswered'}
-                        className={`p-3 border-2 rounded-lg transition duration-300 transform ${getButtonClass(option)} ${quizType === 'usage' ? 'text-center flex justify-center items-center h-24' : 'text-left'}`}
+                        className={`border-2 rounded-lg transition duration-300 transform ${getButtonClass(option)} ${quizType === 'usage' ? 'text-center flex justify-center items-center py-5 px-3' : 'text-left p-3'}`}
                     >
                          {quizType === 'scenario' ? (
                             <pre className="text-sm whitespace-pre-wrap break-words font-sans"><code>{option}</code></pre>

@@ -1,4 +1,3 @@
-
 import { DAXFormula, DAXCategory, QuizQuestion } from './types';
 
 export const CATEGORY_THEME: Record<DAXCategory, { color: string; bgColor: string; icon: string }> = {
@@ -116,5 +115,120 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
         options: ["IF(ISERROR(SUM(Ventas[Importe]) / 0), 0)", "DIVIDE(SUM(Ventas[Importe]), [Ventas Totales], 0)", "IFERROR(SUM(Ventas[Importe]) / [Ventas Totales])", "TRY...CATCH"],
         correctAnswer: "DIVIDE(SUM(Ventas[Importe]), [Ventas Totales], 0)",
         explanation: "La función DIVIDE está optimizada para manejar divisiones por cero de forma segura, permitiendo especificar un resultado alternativo."
+    },
+    {
+        scenario: "El gerente quiere una lista de todas las frutas únicas que se han vendido, sin repeticiones. ¿Qué función usarías?",
+        options: ["VALUES(Productos[Fruta])", "LIST(Productos[Fruta])", "ALL(Productos[Fruta])", "SUMMARIZE(Productos, Productos[Fruta])"],
+        correctAnswer: "VALUES(Productos[Fruta])",
+        explanation: "VALUES devuelve una tabla con una columna de valores únicos de la columna especificada, ideal para listas sin duplicados."
+    },
+    {
+        scenario: "Necesitas crear una columna calculada que clasifique una venta como 'Venta Alta' si supera los 100€, o 'Venta Baja' si no. ¿Cuál es la fórmula correcta?",
+        options: ["IF(Ventas[Importe] > 100, \"Venta Alta\", \"Venta Baja\")", "SWITCH(TRUE(), Ventas[Importe] > 100, \"Venta Alta\", \"Venta Baja\")", "IIF(Ventas[Importe] > 100, \"Venta Alta\", \"Venta Baja\")", "FILTER(Ventas, Ventas[Importe] > 100)"],
+        correctAnswer: "IF(Ventas[Importe] > 100, \"Venta Alta\", \"Venta Baja\")",
+        explanation: "La función IF es la estructura condicional estándar en DAX para evaluar una condición y devolver un resultado basado en si es verdadera o falsa."
+    },
+    {
+        scenario: "Para calcular los ingresos totales, necesitas multiplicar la cantidad por el precio unitario para cada venta y luego sumar todos esos resultados. ¿Qué función iteradora es la ideal?",
+        options: ["SUMX(Ventas, Ventas[Cantidad] * Ventas[PrecioUnitario])", "SUM(Ventas[Cantidad] * Ventas[PrecioUnitario])", "CALCULATE(SUM(Ventas[Cantidad]), SUM(Ventas[PrecioUnitario]))", "PRODUCT(Ventas[Cantidad], Ventas[PrecioUnitario])"],
+        correctAnswer: "SUMX(Ventas, Ventas[Cantidad] * Ventas[PrecioUnitario])",
+        explanation: "SUMX es una función iteradora que evalúa una expresión para cada fila de una tabla y luego suma los resultados, perfecta para este tipo de cálculo."
+    },
+    {
+        scenario: "La frutería necesita saber el número total de transacciones de venta que se han registrado en la tabla 'Ventas'.",
+        options: ["COUNTROWS(Ventas)", "COUNT(Ventas)", "SUM(Ventas[ID_Venta])", "COUNTA(Ventas[ID_Venta])"],
+        correctAnswer: "COUNTROWS(Ventas)",
+        explanation: "COUNTROWS es la función más directa y eficiente para contar el número total de filas en una tabla, que representa el número de transacciones."
+    },
+    {
+        scenario: "En tu tabla de 'Ventas', tienes el ID del producto, pero necesitas mostrar el nombre de la fruta, que está en la tabla 'Productos'. Ambas tablas están relacionadas. ¿Qué función usas?",
+        options: ["RELATED(Productos[Nombre])", "LOOKUPVALUE(Productos[Nombre], Productos[ID_Producto], Ventas[ID_Producto])", "VALUES(Productos[Nombre])", "CALCULATE(VALUES(Productos[Nombre]))"],
+        correctAnswer: "RELATED(Productos[Nombre])",
+        explanation: "RELATED se utiliza en una columna calculada para obtener un valor de una tabla relacionada en el lado 'uno' de una relación uno a varios."
+    },
+    {
+        scenario: "¿Cómo calculas las ventas totales para todos los productos, ignorando cualquier filtro que el usuario haya aplicado en la segmentación de frutas?",
+        options: ["CALCULATE(SUM(Ventas[Importe]), ALL(Productos))", "SUM(Ventas[Importe])", "CALCULATE(SUM(Ventas[Importe]), REMOVEFILTERS(Productos))", "TOTALYTD(SUM(Ventas[Importe]), Calendario[Fecha])"],
+        correctAnswer: "CALCULATE(SUM(Ventas[Importe]), ALL(Productos))",
+        explanation: "La función ALL elimina los filtros de la tabla especificada, permitiendo que el cálculo se realice sobre el conjunto de datos completo, independientemente de las selecciones."
+    },
+    {
+        scenario: "El equipo de marketing quiere crear una promoción de fin de semana. ¿Cómo crearías una columna para identificar si una venta ocurrió en sábado o domingo?",
+        options: ["IF(OR(WEEKDAY(Ventas[Fecha]) = 7, WEEKDAY(Ventas[Fecha]) = 1), \"Fin de Semana\", \"Día de Semana\")", "IF(Ventas[Fecha].DayOfWeek > 5, \"Fin de Semana\", \"Día de Semana\")", "SWITCH(DAYNAME(Ventas[Fecha]), \"Saturday\", \"Fin de Semana\", \"Sunday\", \"Fin de Semana\")", "FIN.DE.SEMANA(Ventas[Fecha])"],
+        correctAnswer: "IF(OR(WEEKDAY(Ventas[Fecha]) = 7, WEEKDAY(Ventas[Fecha]) = 1), \"Fin de Semana\", \"Día de Semana\")",
+        explanation: "WEEKDAY devuelve un número del 1 (domingo) al 7 (sábado). La función OR permite comprobar si es uno de estos dos días para clasificarlo como fin de semana."
+    },
+    {
+        scenario: "Necesitas crear una tabla de calendario dinámica que se ajuste automáticamente para incluir todas las fechas presentes en tus datos de ventas.",
+        options: ["CALENDARAUTO()", "CALENDAR(MIN(Ventas[Fecha]), MAX(Ventas[Fecha]))", "DATESBETWEEN(Calendario[Fecha], MIN(Ventas[Fecha]), MAX(Ventas[Fecha]))", "GENERATESERIES(MIN(Ventas[Fecha]), MAX(Ventas[Fecha]))"],
+        correctAnswer: "CALENDARAUTO()",
+        explanation: "CALENDARAUTO escanea todas las columnas de fecha del modelo y crea automáticamente una tabla de calendario que abarca el rango completo de años encontrados."
+    },
+    {
+        scenario: "El gerente pide un informe de ventas acumuladas en lo que va del año (YTD - Year-to-Date). ¿Qué función de inteligencia de tiempo es la más adecuada?",
+        options: ["CALCULATE(SUM(Ventas[Importe]), DATESYTD(Calendario[Fecha]))", "SUM(Ventas[Importe])", "YTD(Ventas[Importe])", "CALCULATE(SUM(Ventas[Importe]), YEAR(Ventas[Fecha]) = YEAR(TODAY()))"],
+        correctAnswer: "CALCULATE(SUM(Ventas[Importe]), DATESYTD(Calendario[Fecha]))",
+        explanation: "DATESYTD devuelve una tabla de fechas desde el inicio del año hasta la última fecha en el contexto de filtro actual, que se utiliza con CALCULATE para sumar las ventas."
+    },
+    {
+        scenario: "Quieres crear una columna 'NombreCompleto' en la tabla 'Clientes' uniendo el nombre y el apellido, separados por un espacio.",
+        options: ["Clientes[Nombre] & \" \" & Clientes[Apellido]", "CONCATENATE(Clientes[Nombre], Clientes[Apellido])", "COMBINEVALUES(\" \", Clientes[Nombre], Clientes[Apellido])", "ADD(Clientes[Nombre], \" \", Clientes[Apellido])"],
+        correctAnswer: "Clientes[Nombre] & \" \" & Clientes[Apellido]",
+        explanation: "El operador ampersand (&) es la forma más concisa y común de concatenar cadenas de texto en DAX."
+    },
+    {
+        scenario: "Se necesita conocer el importe medio de venta únicamente para las transacciones que vendieron más de 10 unidades de cualquier fruta.",
+        options: [
+            "AVERAGEX(FILTER(Ventas, Ventas[Cantidad] > 10), Ventas[Importe])", 
+            "CALCULATE(AVERAGE(Ventas[Importe]), Ventas[Cantidad] > 10)", 
+            "AVERAGE(Ventas[Importe])",
+            "SUMX(FILTER(Ventas, Ventas[Cantidad] > 10), Ventas[Importe])"
+        ],
+        correctAnswer: "AVERAGEX(FILTER(Ventas, Ventas[Cantidad] > 10), Ventas[Importe])",
+        explanation: "AVERAGEX es ideal aquí. Primero, FILTER crea una tabla virtual con solo las ventas de más de 10 unidades, y luego AVERAGEX calcula el promedio del importe para cada una de esas filas."
+    },
+    {
+        scenario: "Los nombres de los clientes se ingresaron en diferentes formatos. Para estandarizarlos, necesitas convertir todos los nombres de la tabla 'Clientes' a mayúsculas.",
+        options: [
+            "UPPER(Clientes[Nombre])",
+            "FORMAT(Clientes[Nombre], \"UPPER\")",
+            "CONVERT(Clientes[Nombre], \"UPPERCASE\")",
+            "TEXT.UPPER(Clientes[Nombre])"
+        ],
+        correctAnswer: "UPPER(Clientes[Nombre])",
+        explanation: "UPPER es la función estándar de DAX para convertir una cadena de texto a mayúsculas."
+    },
+    {
+        scenario: "Tienes un filtro de tipo de fruta. Quieres calcular el porcentaje de ventas de cada fruta con respecto al total de ventas de *solo las frutas seleccionadas en el filtro*.",
+        options: [
+            "DIVIDE(SUM(Ventas[Importe]), CALCULATE(SUM(Ventas[Importe]), ALLSELECTED(Productos[Fruta])))",
+            "DIVIDE(SUM(Ventas[Importe]), CALCULATE(SUM(Ventas[Importe]), ALL(Productos[Fruta])))",
+            "SUM(Ventas[Importe]) / CALCULATE(SUM(Ventas[Importe]))",
+            "DIVIDE(SUM(Ventas[Importe]), SUM(Ventas[Importe]))"
+        ],
+        correctAnswer: "DIVIDE(SUM(Ventas[Importe]), CALCULATE(SUM(Ventas[Importe]), ALLSELECTED(Productos[Fruta])))",
+        explanation: "ALLSELECTED respeta los filtros externos (como los segmentadores) pero elimina los filtros internos del visual, ideal para porcentajes sobre el total visible."
+    },
+    {
+        scenario: "Tu tabla 'Ventas' tiene 'FechaPedido' y 'FechaEnvio'. La relación activa con 'Calendario' es por 'FechaPedido'. ¿Cómo calculas las ventas por 'FechaEnvio' sin cambiar la relación activa?",
+        options: [
+            "CALCULATE(SUM(Ventas[Importe]), USERELATIONSHIP(Ventas[FechaEnvio], Calendario[Fecha]))",
+            "CALCULATE(SUM(Ventas[Importe]), RELATEDTABLE(Calendario))",
+            "CALCULATE(SUM(Ventas[Importe]), Ventas[FechaEnvio] = Calendario[Fecha])",
+            "SUMX(Ventas, IF(Ventas[FechaEnvio] = MAX(Calendario[Fecha]), Ventas[Importe], 0))"
+        ],
+        correctAnswer: "CALCULATE(SUM(Ventas[Importe]), USERELATIONSHIP(Ventas[FechaEnvio], Calendario[Fecha]))",
+        explanation: "USERELATIONSHIP permite activar una relación inactiva específicamente para un cálculo, sin afectar el modelo global."
+    },
+    {
+        scenario: "Quieres un título dinámico para un gráfico. Si se selecciona una sola fruta, debe mostrar 'Ventas de [Fruta]'. Si no, 'Ventas Totales'.",
+        options: [
+            "IF(HASONEVALUE(Productos[Fruta]), \"Ventas de \" & VALUES(Productos[Fruta]), \"Ventas Totales\")",
+            "IF(ISFILTERED(Productos[Fruta]), \"Ventas de \" & SELECTEDVALUE(Productos[Fruta]), \"Ventas Totales\")",
+            "IIF(COUNTROWS(VALUES(Productos[Fruta])) > 1, \"Ventas Totales\", \"Ventas de \" & VALUES(Productos[Fruta]))",
+            "SWITCH(TRUE(), ISINSCOPE(Productos[Fruta]), \"Ventas de \" & VALUES(Productos[Fruta]), \"Ventas Totales\")"
+        ],
+        correctAnswer: "IF(HASONEVALUE(Productos[Fruta]), \"Ventas de \" & VALUES(Productos[Fruta]), \"Ventas Totales\")",
+        explanation: "HASONEVALUE comprueba si solo hay un valor único en el contexto de filtro. Combinado con VALUES o SELECTEDVALUE, es perfecto para crear títulos dinámicos."
     }
 ];
