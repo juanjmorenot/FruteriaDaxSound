@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { QUIZ_QUESTIONS, DAX_FORMULAS, SYNTAX_QUIZ_QUESTIONS } from '../constants';
 import { shuffleArray } from '../utils';
 import { QuizQuestion } from '../types';
+import Confetti from '../components/Confetti';
 
 type QuizType = 'scenario' | 'usage' | 'syntax' | null;
 type AnswerState = 'unanswered' | 'correct' | 'incorrect';
@@ -24,7 +25,7 @@ const generateUsageQuestions = (count: number): QuizQuestion[] => {
             scenario: correctFormula.usage,
             options: shuffleArray(options),
             correctAnswer: correctFormula.name,
-            explanation: `¡Correcto! La fórmula para este uso es ${correctFormula.name}. Sintaxis: ${correctFormula.syntax}`
+            explanation: `La fórmula para este uso es ${correctFormula.name}. Sintaxis: ${correctFormula.syntax}`
         });
     }
     return generatedQuestions;
@@ -133,17 +134,20 @@ const QuizMode: React.FC = () => {
 
     if (isQuizFinished) {
         return (
-            <div className="max-w-3xl mx-auto text-center p-8 bg-white rounded-3xl shadow-xl border border-stone-200/80">
-                <h2 className="text-xl font-bold text-orange-500 mb-2">¡Desafío completado!</h2>
-                <p className="text-stone-600 text-sm mb-6">Tu puntuación final es:</p>
-                <div className="text-4xl font-extrabold text-orange-500 mb-8">{score} puntos</div>
-                <button 
-                    onClick={handlePlayAgain} 
-                    className="px-8 py-3 bg-orange-500 text-white font-bold rounded-full shadow-lg hover:bg-orange-600 transition transform hover:scale-105 hover:shadow-orange-500/30 text-xs"
-                >
-                    Jugar de Nuevo
-                </button>
-            </div>
+            <>
+                <Confetti />
+                <div className="max-w-3xl mx-auto text-center p-8 bg-white rounded-3xl shadow-xl border border-stone-200/80">
+                    <h2 className="text-xl font-bold text-orange-500 mb-2">¡Desafío completado!</h2>
+                    <p className="text-stone-600 text-sm mb-6">Tu puntuación final es:</p>
+                    <div className="text-4xl font-extrabold text-orange-500 mb-8">{score} puntos</div>
+                    <button 
+                        onClick={handlePlayAgain} 
+                        className="px-8 py-3 bg-orange-500 text-white font-bold rounded-full shadow-lg hover:bg-orange-600 transition transform hover:scale-105 hover:shadow-orange-500/30 text-xs"
+                    >
+                        Jugar de Nuevo
+                    </button>
+                </div>
+            </>
         );
     }
     
@@ -154,7 +158,7 @@ const QuizMode: React.FC = () => {
                 <p className="text-stone-600 mb-8 text-xs">Pon a prueba tus conocimientos de DAX de tres maneras diferentes.</p>
                 <div className="grid md:grid-cols-3 gap-8">
                     <button onClick={() => handleStartQuiz('scenario')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
-                        <span className="text-5xl" role="img" aria-label="chef">👨‍🍳</span>
+                        <span className="text-5xl" role="img" aria-label="telephone">📞</span>
                         <h3 className="font-bold text-lg mt-4 text-stone-800">Consultas</h3>
                         <p className="text-xs mt-2 text-stone-500">Resuelve un problema de la frutería eligiendo la fórmula DAX correcta a partir de un caso práctico.</p>
                     </button>
@@ -183,7 +187,7 @@ const QuizMode: React.FC = () => {
                  <h2 className="text-xl font-bold text-orange-500 flex items-center gap-3">
                     {quizType === 'scenario' && 
                         <>
-                            <span className="text-2xl" role="img" aria-label="chef">👨‍🍳</span>
+                            <span className="text-2xl" role="img" aria-label="telephone">📞</span>
                             <span>Consultas</span>
                         </> 
                     }
@@ -206,7 +210,7 @@ const QuizMode: React.FC = () => {
             </div>
             
             <div className="mb-6 p-4 bg-orange-100/70 rounded-2xl">
-                <p className="font-semibold text-stone-800 text-base leading-tight">{currentQuestion.scenario}</p>
+                <p className="font-semibold text-stone-800 text-base leading-[1.125]">{currentQuestion.scenario}</p>
             </div>
 
             <div className={`grid ${quizType === 'usage' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 md:grid-cols-2'} gap-4`}>
@@ -228,7 +232,7 @@ const QuizMode: React.FC = () => {
 
             {answerState !== 'unanswered' && (
                 <div className={`mt-6 p-4 rounded-xl ${answerState === 'correct' ? 'bg-teal-50 text-teal-900' : 'bg-rose-50 text-rose-900'}`}>
-                    <h3 className="font-bold text-sm">{answerState === 'correct' ? `¡Correcto! +${pointsAwarded} puntos` : '¡Casi!'}</h3>
+                    <h3 className="font-bold text-sm">{answerState === 'correct' ? `¡Correcto! +${pointsAwarded} puntos` : '¡Incorrecto!'}</h3>
                     <p className="mt-1 text-xs">{currentQuestion.explanation}</p>
                     <button
                         onClick={handleNextQuestion}

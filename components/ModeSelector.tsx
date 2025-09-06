@@ -11,16 +11,16 @@ const ModeSelector: React.FC<ModeSelectorProps> = ({ onSelectMode }) => {
     const getIconForMode = (mode: GameMode) => {
         switch (mode) {
             case GameMode.Harvest: return '🍓';
-            case GameMode.Glossary: return '📚';
+            case GameMode.Glossary: return '📦';
             case GameMode.Timed: return '⏱️';
-            case GameMode.Quiz: return '❓';
+            case GameMode.Quiz: return '👨‍🌾';
             default: return '';
         }
     };
 
     const modeDetails: Record<GameMode, { description: string; bgColor: string }> = {
         [GameMode.Harvest]: { description: 'Aprende cada fórmula a tu propio ritmo.', bgColor: 'bg-amber-500' },
-        [GameMode.Glossary]: { description: 'Busca y explora el inventario completo.', bgColor: 'bg-orange-500' },
+        [GameMode.Glossary]: { description: 'Busca y explora todas las fórmulas en la bodega.', bgColor: 'bg-orange-500' },
         [GameMode.Timed]: { description: 'Memoriza antes de que se acabe el tiempo.', bgColor: 'bg-rose-500' },
         [GameMode.Quiz]: { description: 'Pon a prueba tus conocimientos.', bgColor: 'bg-indigo-500' },
     }

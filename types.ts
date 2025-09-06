@@ -27,7 +27,7 @@ export interface QuizQuestion {
 
 export enum GameMode {
     Harvest = "Cosecha de Frutas",
-    Glossary = "Inventario Completo",
-    Timed = "Jugo Contra el Reloj",
+    Glossary = "Bodega",
+    Timed = "Memoriza la Fruta",
     Quiz = "Desafíos",
 }

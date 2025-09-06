@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { DAX_FORMULAS, CATEGORY_THEME } from '../constants';
 import { shuffleArray } from '../utils';
+import Confetti from '../components/Confetti';
 
 const TIME_LIMIT = 20; // 20 seconds
-const SESSION_LENGTH = 10;
+const SESSION_LENGTH = 25;
 
 const TimedMode: React.FC = () => {
     const [sessionFormulas, setSessionFormulas] = useState<(typeof DAX_FORMULAS)[0][]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [timeLeft, setTimeLeft] = useState(TIME_LIMIT);
     const [isActive, setIsActive] = useState(false);
+    const [isSessionFinished, setIsSessionFinished] = useState(false);
 
     // Fix: Initialize useRef with an initial value and update type to allow `undefined`.
     const requestRef = useRef<number | undefined>(undefined);
@@ -21,6 +23,7 @@ const TimedMode: React.FC = () => {
         setCurrentIndex(0);
         setTimeLeft(TIME_LIMIT);
         setIsActive(true);
+        setIsSessionFinished(false);
     }, []);
 
     const animate = useCallback((time: DOMHighResTimeStamp) => {
@@ -40,6 +43,7 @@ const TimedMode: React.FC = () => {
                 setCurrentIndex(prev => prev + 1);
             } else {
                 setIsActive(false);
+                setIsSessionFinished(true);
             }
         }
     }, [currentIndex]);
@@ -56,12 +60,32 @@ const TimedMode: React.FC = () => {
         };
     }, [isActive, currentIndex, animate]);
     
+    if (isSessionFinished) {
+        return (
+            <>
+                <Confetti />
+                <div className="max-w-3xl mx-auto text-center p-8 bg-white rounded-3xl shadow-xl border border-stone-200/80">
+                    <h2 className="text-xl font-bold text-orange-500 mb-2">¡Ronda completada!</h2>
+                    <p className="text-stone-600 text-sm mb-6">
+                        Has repasado las {SESSION_LENGTH} frutas de esta sesión. ¡Sigue así para memorizarlas todas!
+                    </p>
+                    <button 
+                        onClick={startNewSession} 
+                        className="px-8 py-3 bg-orange-500 text-white font-bold rounded-full shadow-lg hover:bg-orange-600 transition transform hover:scale-105 hover:shadow-orange-500/30 text-sm"
+                    >
+                        Jugar de Nuevo
+                    </button>
+                </div>
+            </>
+        );
+    }
+
     if (!isActive) {
         return (
             <div className="text-center p-8 bg-white rounded-3xl shadow-xl shadow-orange-500/10 max-w-lg mx-auto border border-stone-200/80">
                  <h2 className="text-2xl font-bold text-orange-500 mb-4 flex justify-center items-center gap-3">
                     <span className="text-3xl">⏱️</span>
-                    <span>Modo: Jugo Contra el Reloj</span>
+                    <span>Memoriza la Fruta</span>
                  </h2>
                 <p className="text-stone-600 mb-6 text-sm">
                     Memoriza toda la información de la fórmula antes de que se acabe el tiempo. ¡Completarás una racha de {SESSION_LENGTH} frutas!
@@ -99,7 +123,7 @@ const TimedMode: React.FC = () => {
             <div className="relative p-6 bg-white rounded-3xl shadow-xl shadow-orange-500/10 border border-stone-200/80">
                 <div className="text-center mb-4 pb-4 border-b border-stone-200">
                     <p className="font-bold text-base text-stone-500">Fruta {currentIndex + 1} de {SESSION_LENGTH}</p>
-                    <p className="text-2xl font-extrabold">{formula.name} <span className="text-3xl">{theme.icon}</span></p>
+                    <p className="text-2xl font-extrabold"><span className="text-3xl">{theme.icon}</span> {formula.name}</p>
                     <p className={`font-bold mt-1 ${theme.color} text-sm`}>{formula.category}</p>
                 </div>
 
