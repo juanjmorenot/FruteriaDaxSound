@@ -1,13 +1,11 @@
-
 import React from 'react';
 import { GameMode } from '../types';
 
 interface ModeSelectorProps {
-    activeMode: GameMode;
     onSelectMode: (mode: GameMode) => void;
 }
 
-const ModeSelector: React.FC<ModeSelectorProps> = ({ activeMode, onSelectMode }) => {
+const ModeSelector: React.FC<ModeSelectorProps> = ({ onSelectMode }) => {
     const modes = Object.values(GameMode);
 
     const getIconForMode = (mode: GameMode) => {
@@ -19,25 +17,34 @@ const ModeSelector: React.FC<ModeSelectorProps> = ({ activeMode, onSelectMode })
             default: return '';
         }
     };
+
+    const modeDetails: Record<GameMode, { description: string; bgColor: string }> = {
+        [GameMode.Harvest]: { description: 'Aprende cada fórmula a tu propio ritmo.', bgColor: 'bg-amber-500' },
+        [GameMode.Glossary]: { description: 'Busca y explora el inventario completo.', bgColor: 'bg-orange-500' },
+        [GameMode.Timed]: { description: 'Memoriza antes de que se acabe el tiempo.', bgColor: 'bg-rose-500' },
+        [GameMode.Quiz]: { description: 'Pon a prueba tus conocimientos.', bgColor: 'bg-indigo-500' },
+    }
     
     return (
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 p-4 bg-white/60 backdrop-blur-sm rounded-xl shadow-sm border border-slate-200">
+        <div className="flex flex-col gap-3 md:gap-4 w-full max-w-3xl mx-auto">
             {modes.map((mode) => (
                 <button
                     key={mode}
                     onClick={() => onSelectMode(mode)}
                     className={`
-                        flex-grow md:flex-grow-0 px-4 py-2 text-sm md:text-base font-bold rounded-lg transition-all duration-300 transform 
-                        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500
-                        ${
-                            activeMode === mode
-                                ? 'bg-green-500 text-white shadow-lg scale-105'
-                                : 'bg-white text-slate-700 hover:bg-amber-100 hover:-translate-y-1'
-                        }
+                        rounded-3xl transition-all duration-300 ease-in-out shadow-lg text-white
+                        ${modeDetails[mode].bgColor}
+                        hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02]
+                        w-full p-6 md:p-10 lg:p-14 flex items-center gap-4 md:gap-5 text-left
                     `}
                 >
-                    <span className="mr-2">{getIconForMode(mode)}</span>
-                    {mode}
+                    <span className="text-3xl md:text-4xl" aria-hidden="true">{getIconForMode(mode)}</span>
+                    <div className="flex-grow">
+                        <h3 className="text-xl md:text-2xl font-extrabold">{mode}</h3>
+                        <p className="text-sm md:text-base font-medium text-white/90 mt-1">
+                            {modeDetails[mode].description}
+                        </p>
+                    </div>
                 </button>
             ))}
         </div>

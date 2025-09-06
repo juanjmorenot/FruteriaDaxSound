@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { DAX_FORMULAS } from '../constants';
 import Flashcard from '../components/Flashcard';
@@ -32,16 +31,16 @@ const HarvestMode: React.FC = () => {
         <div className="flex flex-col items-center">
             <Flashcard formula={shuffledFormulas[currentIndex]} />
             <div className="mt-8 flex items-center justify-center gap-4 w-full max-w-2xl">
-                <button onClick={handlePrev} className="p-3 bg-white rounded-full shadow-md hover:bg-amber-100 transition transform hover:scale-110">
+                <button onClick={handlePrev} className="p-3 bg-white rounded-full shadow-md hover:bg-orange-50 transition transform hover:scale-110">
                     <Icon name="prev" />
                 </button>
-                <div className="text-center font-bold text-slate-600">
+                <div className="text-center font-bold text-stone-500 w-20">
                     {currentIndex + 1} / {shuffledFormulas.length}
                 </div>
-                <button onClick={handleNext} className="p-3 bg-white rounded-full shadow-md hover:bg-amber-100 transition transform hover:scale-110">
+                <button onClick={handleNext} className="p-3 bg-white rounded-full shadow-md hover:bg-orange-50 transition transform hover:scale-110">
                     <Icon name="next" />
                 </button>
-                 <button onClick={handleShuffle} className="px-4 py-3 bg-green-500 text-white font-bold rounded-full shadow-md hover:bg-green-600 transition transform hover:scale-105">
+                 <button onClick={handleShuffle} className="px-5 py-3 bg-orange-500 text-white font-bold rounded-full shadow-lg hover:bg-orange-600 transition transform hover:scale-105 hover:shadow-orange-500/30">
                     Barajar
                 </button>
             </div>

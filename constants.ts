@@ -3,12 +3,12 @@ import { DAXFormula, DAXCategory, QuizQuestion } from './types';
 export const CATEGORY_THEME: Record<DAXCategory, { color: string; bgColor: string; icon: string }> = {
     [DAXCategory.Aggregation]: { color: 'text-red-600', bgColor: 'bg-red-100', icon: '🍓' },
     [DAXCategory.Filter]: { color: 'text-orange-600', bgColor: 'bg-orange-100', icon: '🍊' },
-    [DAXCategory.TimeIntelligence]: { color: 'text-blue-600', bgColor: 'bg-blue-100', icon: '🫐' },
-    [DAXCategory.Logical]: { color: 'text-green-600', bgColor: 'bg-green-100', icon: '🍐' },
+    [DAXCategory.TimeIntelligence]: { color: 'text-indigo-500', bgColor: 'bg-indigo-100', icon: '🫐' },
+    [DAXCategory.Logical]: { color: 'text-lime-600', bgColor: 'bg-lime-100', icon: '🍐' },
     [DAXCategory.Information]: { color: 'text-purple-600', bgColor: 'bg-purple-100', icon: '🍇' },
-    [DAXCategory.Relationship]: { color: 'text-pink-600', bgColor: 'bg-pink-100', icon: '🍒' },
-    [DAXCategory.Text]: { color: 'text-yellow-600', bgColor: 'bg-yellow-100', icon: '🍋' },
-    [DAXCategory.Ranking]: { color: 'text-teal-600', bgColor: 'bg-teal-100', icon: '🥝' },
+    [DAXCategory.Relationship]: { color: 'text-rose-600', bgColor: 'bg-rose-100', icon: '🍒' },
+    [DAXCategory.Text]: { color: 'text-amber-500', bgColor: 'bg-amber-100', icon: '🍋' },
+    [DAXCategory.Ranking]: { color: 'text-teal-500', bgColor: 'bg-teal-100', icon: '🥝' },
 };
 
 export const DAX_FORMULAS: DAXFormula[] = [
