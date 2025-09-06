@@ -41,7 +41,7 @@ const QuizMode: React.FC = () => {
     const [isQuizFinished, setIsQuizFinished] = useState(false);
     const [questionStartTime, setQuestionStartTime] = useState(0);
     const [pointsAwarded, setPointsAwarded] = useState(0);
-    const titleRef = useRef<HTMLHeadingElement>(null);
+    const titleRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         // When an answer is selected, scroll to the bottom of the page to reveal the explanation.
@@ -166,7 +166,9 @@ const QuizMode: React.FC = () => {
     if (!quizType) {
         return (
             <div className="max-w-5xl mx-auto text-center">
-                <h2 ref={titleRef} className="text-xl font-bold text-orange-500 mb-4 font-title">Elige tu Desafío</h2>
+                <div ref={titleRef} className="pt-[15vh]">
+                    <h2 className="text-xl font-bold text-orange-500 mb-4 font-title">Elige tu Desafío</h2>
+                </div>
                 <p className="text-stone-600 mb-8 text-xs">Pon a prueba tus conocimientos de DAX de tres maneras diferentes.</p>
                 <div className="flex flex-col gap-3 md:gap-4 w-full max-w-3xl mx-auto">
                     <button
