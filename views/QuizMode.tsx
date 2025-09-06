@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { QUIZ_QUESTIONS, DAX_FORMULAS } from '../constants';
+import { QUIZ_QUESTIONS, DAX_FORMULAS, SYNTAX_QUIZ_QUESTIONS } from '../constants';
 import { shuffleArray } from '../utils';
 import { QuizQuestion } from '../types';
 
-type QuizType = 'scenario' | 'usage' | null;
+type QuizType = 'scenario' | 'usage' | 'syntax' | null;
 type AnswerState = 'unanswered' | 'correct' | 'incorrect';
 
 const generateUsageQuestions = (count: number): QuizQuestion[] => {
@@ -21,7 +21,7 @@ const generateUsageQuestions = (count: number): QuizQuestion[] => {
         const options = [correctFormula.name, ...shuffledDistractors.slice(0, 5).map(f => f.name)];
 
         generatedQuestions.push({
-            scenario: `Identifica la fórmula con el siguiente uso: "${correctFormula.usage}"`,
+            scenario: correctFormula.usage,
             options: shuffleArray(options),
             correctAnswer: correctFormula.name,
             explanation: `¡Correcto! La fórmula para este uso es ${correctFormula.name}. Sintaxis: ${correctFormula.syntax}`
@@ -64,12 +64,14 @@ const QuizMode: React.FC = () => {
         setPointsAwarded(0);
     };
 
-    const handleStartQuiz = (type: 'scenario' | 'usage') => {
+    const handleStartQuiz = (type: 'scenario' | 'usage' | 'syntax') => {
         resetQuizState();
         if (type === 'scenario') {
             setQuestions(shuffleArray(QUIZ_QUESTIONS));
-        } else {
+        } else if (type === 'usage') {
             setQuestions(generateUsageQuestions(20));
+        } else if (type === 'syntax') {
+            setQuestions(shuffleArray(SYNTAX_QUIZ_QUESTIONS).slice(0, 20));
         }
         setQuizType(type);
         setQuestionStartTime(Date.now());
@@ -147,18 +149,23 @@ const QuizMode: React.FC = () => {
     
     if (!quizType) {
         return (
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-5xl mx-auto text-center">
                 <h2 className="text-2xl font-bold text-orange-500 mb-4">Elige tu Desafío</h2>
-                <p className="text-stone-600 mb-8 text-sm">Pon a prueba tus conocimientos de DAX de dos maneras diferentes.</p>
-                <div className="grid md:grid-cols-2 gap-8">
+                <p className="text-stone-600 mb-8 text-sm">Pon a prueba tus conocimientos de DAX de tres maneras diferentes.</p>
+                <div className="grid md:grid-cols-3 gap-8">
                     <button onClick={() => handleStartQuiz('scenario')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
-                        <span className="text-5xl" role="img" aria-label="chef">👨‍🍳</span>
-                        <h3 className="font-bold text-lg mt-4 text-stone-800">Requerimiento del Jefe</h3>
+                        <span className="text-7xl" role="img" aria-label="chef">👨‍🍳</span>
+                        <h3 className="font-bold text-xl mt-4 text-stone-800">Consultas</h3>
                         <p className="text-xs mt-2 text-stone-500">Resuelve un problema de la frutería eligiendo la fórmula DAX correcta a partir de un caso práctico.</p>
                     </button>
+                     <button onClick={() => handleStartQuiz('syntax')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
+                        <span className="text-7xl" role="img" aria-label="recipe book">📖</span>
+                        <h3 className="font-bold text-xl mt-4 text-stone-800">Recetas</h3>
+                        <p className="text-xs mt-2 text-stone-500">Identifica la sintaxis correcta de una fórmula DAX para dominar su estructura y parámetros.</p>
+                    </button>
                     <button onClick={() => handleStartQuiz('usage')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
-                        <span className="text-5xl" role="img" aria-label="magnifying glass">🔎</span>
-                        <h3 className="font-bold text-lg mt-4 text-stone-800">Identificar la Fruta</h3>
+                        <span className="text-7xl" role="img" aria-label="magnifying glass">🔎</span>
+                        <h3 className="font-bold text-xl mt-4 text-stone-800">Identificar la Fruta</h3>
                         <p className="text-xs mt-2 text-stone-500">Te damos una descripción (el "uso") y debes identificar la fórmula correcta entre 6 opciones.</p>
                     </button>
                 </div>
@@ -173,28 +180,45 @@ const QuizMode: React.FC = () => {
     return (
         <div className="max-w-3xl mx-auto p-6 bg-white rounded-3xl shadow-xl border border-stone-200/80">
             <div className="flex justify-between items-center mb-4">
-                 <h2 className="text-lg font-bold text-orange-500">
-                    {quizType === 'scenario' ? 'Requerimiento del Jefe 👨‍🍳' : '¿Qué fruta es? 🔎'}
+                 <h2 className="text-2xl font-bold text-orange-500 flex items-center gap-3">
+                    {quizType === 'scenario' && 
+                        <>
+                            <span className="text-3xl" role="img" aria-label="chef">👨‍🍳</span>
+                            <span>Consultas</span>
+                        </> 
+                    }
+                    {quizType === 'usage' &&
+                        <>
+                            <span className="text-3xl" role="img" aria-label="magnifying glass">🔎</span>
+                            <span>¿Qué fruta es?</span>
+                        </>
+                    }
+                    {quizType === 'syntax' &&
+                        <>
+                             <span className="text-3xl" role="img" aria-label="recipe book">📖</span>
+                            <span>Recetas</span>
+                        </>
+                    }
                 </h2>
-                <div className="font-bold text-stone-600 text-sm">
-                    Pregunta {currentQuestionIndex + 1}/{questions.length} | Puntos: {score}
+                <div className="font-bold text-stone-600 text-base">
+                    {currentQuestionIndex + 1}/{questions.length} | Puntos: {score}
                 </div>
             </div>
             
             <div className="mb-6 p-4 bg-orange-100/70 rounded-2xl">
-                <p className="text-base text-stone-800 font-semibold">{currentQuestion.scenario}</p>
+                <p className="font-semibold text-stone-800 text-lg leading-tight">{currentQuestion.scenario}</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className={`grid ${quizType === 'usage' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 md:grid-cols-2'} gap-4`}>
                 {currentQuestion.options.map((option, index) => (
                     <button
                         key={index}
                         onClick={() => handleAnswerClick(option)}
                         disabled={answerState !== 'unanswered'}
-                        className={`border-2 rounded-2xl transition duration-300 transform ${getButtonClass(option)} ${quizType === 'usage' ? 'text-center flex justify-center items-center py-5 px-3' : 'text-left p-3'}`}
+                        className={`border-2 rounded-2xl transition duration-300 transform ${getButtonClass(option)} ${quizType === 'usage' ? 'text-center flex justify-center items-center py-2 px-1' : 'text-left p-3'}`}
                     >
-                         {quizType === 'scenario' ? (
-                            <pre className="text-xs whitespace-pre-wrap break-words font-sans"><code>{option}</code></pre>
+                         {quizType === 'scenario' || quizType === 'syntax' ? (
+                            <pre className="text-base whitespace-pre-wrap break-words font-sans"><code>{option}</code></pre>
                         ) : (
                             <code className="font-bold text-base">{option}</code>
                         )}

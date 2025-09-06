@@ -59,7 +59,10 @@ const TimedMode: React.FC = () => {
     if (!isActive) {
         return (
             <div className="text-center p-8 bg-white rounded-3xl shadow-xl shadow-orange-500/10 max-w-lg mx-auto border border-stone-200/80">
-                 <h2 className="text-xl font-bold text-orange-500 mb-2">Modo: Jugo Contra el Reloj ⏱️</h2>
+                 <h2 className="text-2xl font-bold text-orange-500 mb-4 flex justify-center items-center gap-3">
+                    <span className="text-3xl">⏱️</span>
+                    <span>Modo: Jugo Contra el Reloj</span>
+                 </h2>
                 <p className="text-stone-600 mb-6 text-sm">
                     Memoriza toda la información de la fórmula antes de que se acabe el tiempo. ¡Completarás una racha de {SESSION_LENGTH} frutas!
                 </p>

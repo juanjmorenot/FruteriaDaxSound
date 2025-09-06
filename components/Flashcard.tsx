@@ -41,7 +41,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ formula }) => {
                                 <p className={`font-bold mt-1 ${theme.color} text-sm`}>{formula.category}</p>
                             </div>
                             <div className="mb-4">
-                                <h3 className={`text-base font-bold ${theme.color}`}>Uso: ¿Para qué sirve esta "fruta"?</h3>
+                                <h3 className={`text-base font-bold ${theme.color}`}>Uso: ¿Para qué sirve esta fruta?</h3>
                                 <p className="text-stone-600 mt-1">{formula.usage}</p>
                             </div>
                             <div className="mb-4">

@@ -232,3 +232,226 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
         explanation: "HASONEVALUE comprueba si solo hay un valor único en el contexto de filtro. Combinado con VALUES o SELECTEDVALUE, es perfecto para crear títulos dinámicos."
     }
 ];
+
+export const SYNTAX_QUIZ_QUESTIONS: QuizQuestion[] = [
+    {
+        scenario: "Identifica la receta correcta para la función: CALCULATE",
+        options: [
+            "CALCULATE(<expresión>[, <filtro1>, <filtro2>...])",
+            "CALCULATE([<filtro1>], <expresión>)",
+            "CALCULATE(<expresión>; <filtro1>)",
+            "CALCULATE({<expresión>}, (<filtro1>))"
+        ],
+        correctAnswer: "CALCULATE(<expresión>[, <filtro1>, <filtro2>...])",
+        explanation: "La sintaxis correcta de CALCULATE evalúa primero la expresión y luego aplica los filtros opcionales."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: SUMX",
+        options: [
+            "SUMX(<table>, <expresión>)",
+            "SUMX(<expresión>, <table>)",
+            "SUMX(<table> + <expresión>)",
+            "SUMX(<table>: <expresión>)"
+        ],
+        correctAnswer: "SUMX(<table>, <expresión>)",
+        explanation: "SUMX es una función iteradora. Siempre requiere la tabla como primer argumento y la expresión a evaluar como segundo."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: FILTER",
+        options: [
+            "FILTER(<table>, <condición_filtro>)",
+            "FILTER(<condición_filtro>, <table>)",
+            "FILTER(<table>; <condición_filtro>)",
+            "FILTER{<table>, <condición_filtro>}"
+        ],
+        correctAnswer: "FILTER(<table>, <condición_filtro>)",
+        explanation: "FILTER devuelve una tabla. El primer argumento es la tabla a filtrar y el segundo es la condición lógica."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: IF",
+        options: [
+            "IF(<condición>, <valor_si_true>, <valor_si_false>)",
+            "IF(<condición>; <valor_si_true>; <valor_si_false>)",
+            "IF(<valor_si_true>, <valor_si_false>, <condición>)",
+            "IF(<condición>, <valor_si_true>)"
+        ],
+        correctAnswer: "IF(<condición>, <valor_si_true>, <valor_si_false>)",
+        explanation: "La función IF requiere tres argumentos: la condición a evaluar, el resultado si es verdadera y el resultado si es falsa."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: DIVIDE",
+        options: [
+            "DIVIDE(<numerador>, <denominador>[, <resultado_alternativo>])",
+            "DIVIDE(<denominador>, <numerador>[, <resultado_alternativo>])",
+            "DIVIDE(<numerador> / <denominador>)",
+            "DIVIDE(<numerador>, <denominador>, <obligatorio_alternativo>)"
+        ],
+        correctAnswer: "DIVIDE(<numerador>, <denominador>[, <resultado_alternativo>])",
+        explanation: "DIVIDE toma el numerador, luego el denominador, y opcionalmente un resultado alternativo para casos de división por cero."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: SWITCH",
+        options: [
+            "SWITCH(<expresión>, <valor1>, <resultado1>...[, <else>])",
+            "SWITCH(<valor1>, <resultado1>, <expresión>...[, <else>])",
+            "SWITCH(<expresión>, [<valor1>, <resultado1>]...[, <else>])",
+            "SWITCH(<expresión>: <valor1>, <resultado1>...)"
+        ],
+        correctAnswer: "SWITCH(<expresión>, <valor1>, <resultado1>...[, <else>])",
+        explanation: "SWITCH evalúa una expresión inicial y luego la compara con una lista de pares de valor y resultado."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: RELATED",
+        options: [
+            "RELATED(<columna>)",
+            "RELATED(<table>, <columna>)",
+            "RELATED(<columna_actual>, <columna_relacionada>)",
+            "RELATED{<columna>}"
+        ],
+        correctAnswer: "RELATED(<columna>)",
+        explanation: "RELATED se usa en columnas calculadas y solo necesita como argumento la columna de la tabla relacionada de la que se quiere obtener el valor."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: DATESYTD",
+        options: [
+            "DATESYTD(<fechas>[, <fin_de_año>])",
+            "DATESYTD([<fin_de_año>], <fechas>)",
+            "DATESYTD(<fechas>, <inicio_de_año>)",
+            "DATESYTD(<fechas>)"
+        ],
+        correctAnswer: "DATESYTD(<fechas>[, <fin_de_año>])",
+        explanation: "DATESYTD requiere una columna de fechas como primer argumento y, opcionalmente, una fecha de fin de año fiscal."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: RANKX",
+        options: [
+            "RANKX(<table>, <expresión>[, <valor>[, <orden>[, <empates>]]])",
+            "RANKX(<expresión>, <table>[, <valor>[, <orden>[, <empates>]]])",
+            "RANKX(<table>, <expresión>)",
+            "RANKX(<table>, <expresión>, <orden>)"
+        ],
+        correctAnswer: "RANKX(<table>, <expresión>[, <valor>[, <orden>[, <empates>]]])",
+        explanation: "RANKX necesita la tabla sobre la que se va a clasificar y la expresión que se usará para el ranking. Los demás parámetros son opcionales."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: ALLEXCEPT",
+        options: [
+            "ALLEXCEPT(<table>, <columna1>[, <columna2>...])",
+            "ALLEXCEPT(<columna1>, <table>[, <columna2>...])",
+            "ALLEXCEPT(<table>, ALL(<columna1>))",
+            "ALLEXCEPT(<table> - <columna1>)"
+        ],
+        correctAnswer: "ALLEXCEPT(<table>, <columna1>[, <columna2>...])",
+        explanation: "ALLEXCEPT elimina filtros de una tabla, excepto de las columnas especificadas. La tabla es el primer argumento."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: FORMAT",
+        options: [
+            "FORMAT(<valor>, <formato>)",
+            "FORMAT(<formato>, <valor>)",
+            "FORMAT(<valor> AS <formato>)",
+            "FORMAT(<valor>)"
+        ],
+        correctAnswer: "FORMAT(<valor>, <formato>)",
+        explanation: "FORMAT convierte un valor a texto, usando una cadena de formato específica. El valor va primero."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: USERELATIONSHIP",
+        options: [
+            "USERELATIONSHIP(<columna1>, <columna2>)",
+            "USERELATIONSHIP(<table>, <columna1>, <columna2>)",
+            "USERELATIONSHIP(<columna1> -> <columna2>)",
+            "USERELATIONSHIP([<columna1>], [<columna2>])"
+        ],
+        correctAnswer: "USERELATIONSHIP(<columna1>, <columna2>)",
+        explanation: "USERELATIONSHIP se usa dentro de CALCULATE y activa una relación inactiva especificando las dos columnas que la forman."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: CONCATENATE",
+        options: [
+            "CONCATENATE(<texto1>, <texto2>)",
+            "CONCATENATE(<texto1> & <texto2>)",
+            "CONCATENATE(<texto1>, <texto2>, <texto3>)",
+            "CONCATENATE([<texto1>], [<texto2>])"
+        ],
+        correctAnswer: "CONCATENATE(<texto1>, <texto2>)",
+        explanation: "La función CONCATENATE une dos cadenas de texto. Para unir más de dos, se debe usar el operador ampersand (&)."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: DATEADD",
+        options: [
+            "DATEADD(<fechas>, <número_de_intervalos>, <intervalo>)",
+            "DATEADD(<intervalo>, <número_de_intervalos>, <fechas>)",
+            "DATEADD(<fechas>, <intervalo>, <número_de_intervalos>)",
+            "DATEADD(<fechas> + <número_de_intervalos>)"
+        ],
+        correctAnswer: "DATEADD(<fechas>, <número_de_intervalos>, <intervalo>)",
+        explanation: "DATEADD desplaza un conjunto de fechas un número de intervalos (DAY, MONTH, YEAR) especificado."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: HASONEVALUE",
+        options: [
+            "HASONEVALUE(<nombreColumna>)",
+            "HASONEVALUE(<table>, <nombreColumna>)",
+            "HASONEVALUE(<nombreColumna> = 1)",
+            "HASONEVALUE(<nombreColumna>)"
+        ],
+        correctAnswer: "HASONEVALUE(<nombreColumna>)",
+        explanation: "HASONEVALUE comprueba si una columna tiene un solo valor en el contexto actual y solo requiere el nombre de la columna."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: DISTINCTCOUNT",
+        options: [
+            "DISTINCTCOUNT(<columna>)",
+            "DISTINCT(COUNT(<columna>))",
+            "COUNT(DISTINCT(<columna>))",
+            "DISTINCTCOUNT(<table>, <columna>)"
+        ],
+        correctAnswer: "DISTINCTCOUNT(<columna>)",
+        explanation: "DISTINCTCOUNT es una función optimizada que cuenta el número de valores únicos en una sola columna."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: CALENDAR",
+        options: [
+            "CALENDAR(<fecha_inicio>, <fecha_fin>)",
+            "CALENDAR(<fecha_fin>, <fecha_inicio>)",
+            "CALENDAR(<table>)",
+            "CALENDAR(<fecha_inicio> TO <fecha_fin>)"
+        ],
+        correctAnswer: "CALENDAR(<fecha_inicio>, <fecha_fin>)",
+        explanation: "CALENDAR crea una tabla de fechas entre una fecha de inicio y una fecha de fin."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: MID",
+        options: [
+            "MID(<texto>, <pos_inicial>, <núm_caracteres>)",
+            "MID(<texto>, <núm_caracteres>, <pos_inicial>)",
+            "MID(<pos_inicial>, <núm_caracteres>, <texto>)",
+            "MID(<texto> FROM <pos_inicial> FOR <núm_caracteres>)"
+        ],
+        correctAnswer: "MID(<texto>, <pos_inicial>, <núm_caracteres>)",
+        explanation: "MID extrae texto desde una posición inicial, con una longitud determinada."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: IFERROR",
+        options: [
+            "IFERROR(<valor>, <valor_si_error>)",
+            "IFERROR(<valor_si_error>, <valor>)",
+            "IF(ERROR(<valor>), <valor_si_error>)",
+            "IFERROR(<valor> THEN <valor_si_error>)"
+        ],
+        correctAnswer: "IFERROR(<valor>, <valor_si_error>)",
+        explanation: "IFERROR evalúa el primer argumento y, si produce un error, devuelve el segundo argumento."
+    },
+    {
+        scenario: "Identifica la receta correcta para la función: ALLSELECTED",
+        options: [
+            "ALLSELECTED([<nombre_tabla> | <nombre_columna>])",
+            "ALLSELECTED(<table>, <columna>)",
+            "ALLSELECTED()",
+            "ALLSELECTED{<nombre_tabla>}"
+        ],
+        correctAnswer: "ALLSELECTED([<nombre_tabla> | <nombre_columna>])",
+        explanation: "ALLSELECTED se puede usar sin argumentos o con una tabla o columna para restaurar el contexto de filtro externo."
+    }
+];
