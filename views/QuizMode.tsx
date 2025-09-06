@@ -154,22 +154,22 @@ const QuizMode: React.FC = () => {
     if (!quizType) {
         return (
             <div className="max-w-5xl mx-auto text-center">
-                <h2 className="text-xl font-bold text-orange-500 mb-4">Elige tu Desafío</h2>
+                <h2 className="text-xl font-bold text-orange-500 mb-4 font-title">Elige tu Desafío</h2>
                 <p className="text-stone-600 mb-8 text-xs">Pon a prueba tus conocimientos de DAX de tres maneras diferentes.</p>
                 <div className="grid md:grid-cols-3 gap-8">
                     <button onClick={() => handleStartQuiz('scenario')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
                         <span className="text-5xl" role="img" aria-label="telephone">📞</span>
-                        <h3 className="font-bold text-lg mt-4 text-stone-800">Consultas</h3>
+                        <h3 className="font-bold text-lg mt-4 text-stone-800 font-title">Consultas</h3>
                         <p className="text-xs mt-2 text-stone-500">Resuelve un problema de la frutería eligiendo la fórmula DAX correcta a partir de un caso práctico.</p>
                     </button>
                      <button onClick={() => handleStartQuiz('syntax')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
                         <span className="text-5xl" role="img" aria-label="recipe book">📖</span>
-                        <h3 className="font-bold text-lg mt-4 text-stone-800">Recetas</h3>
+                        <h3 className="font-bold text-lg mt-4 text-stone-800 font-title">Recetas</h3>
                         <p className="text-xs mt-2 text-stone-500">Identifica la sintaxis correcta de una fórmula DAX para dominar su estructura y parámetros.</p>
                     </button>
                     <button onClick={() => handleStartQuiz('usage')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
                         <span className="text-5xl" role="img" aria-label="magnifying glass">🔎</span>
-                        <h3 className="font-bold text-lg mt-4 text-stone-800">Identificar la Fruta</h3>
+                        <h3 className="font-bold text-lg mt-4 text-stone-800 font-title">Identificar la Fruta</h3>
                         <p className="text-xs mt-2 text-stone-500">Te damos una descripción (el "uso") y debes identificar la fórmula correcta entre 6 opciones.</p>
                     </button>
                 </div>
@@ -184,7 +184,7 @@ const QuizMode: React.FC = () => {
     return (
         <div className="max-w-3xl mx-auto p-6 bg-white rounded-3xl shadow-xl border border-stone-200/80">
             <div className="flex justify-between items-center mb-4">
-                 <h2 className="text-xl font-bold text-orange-500 flex items-center gap-3">
+                 <h2 className="text-xl font-bold text-orange-500 flex items-center gap-3 font-title">
                     {quizType === 'scenario' && 
                         <>
                             <span className="text-2xl" role="img" aria-label="telephone">📞</span>
