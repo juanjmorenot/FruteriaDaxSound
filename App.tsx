@@ -36,7 +36,7 @@ const App: React.FC = () => {
     return (
         <div className="h-screen bg-white text-stone-700 flex flex-col">
             <Header />
-            <main className={`container mx-auto p-4 pt-2 md:p-8 md:pt-4 flex-grow flex flex-col justify-start`}>
+            <main className={`container mx-auto p-4 pt-2 md:p-8 md:pt-4`}>
                 {selectedMode === null ? (
                     <ModeSelector onSelectMode={handleSelectMode} />
                 ) : (
@@ -57,6 +57,7 @@ const App: React.FC = () => {
                     </div>
                 )}
             </main>
+            <div className="flex-grow" />
             <footer className="text-center py-4 text-xs text-stone-500 flex-shrink-0">
                 <p>Frutería DAX - Tu forma divertida de aprender DAX</p>
             </footer>
