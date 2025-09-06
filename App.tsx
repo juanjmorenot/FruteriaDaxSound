@@ -33,10 +33,20 @@ const App: React.FC = () => {
         setSelectedMode(null);
     };
 
+    // Adjust main content area classes based on the selected mode.
+    // When a mode is selected (header hidden), use full padding.
+    // On the main menu (header visible), reduce top padding.
+    const mainContainerClasses = `container mx-auto ${
+        selectedMode === null ? 'p-4 pt-2 md:p-8 md:pt-4' : 'p-4 md:p-8'
+    }`;
+
     return (
-        <div className="h-screen bg-white text-stone-700 flex flex-col">
-            <Header />
-            <main className={`container mx-auto p-4 pt-2 md:p-8 md:pt-4`}>
+        // Use `min-h-screen` to allow the container to grow with its content, enabling natural scrolling.
+        <div className="min-h-screen bg-white text-stone-700 flex flex-col">
+            {/* The Header is only displayed on the main menu screen. */}
+            {selectedMode === null && <Header />}
+            
+            <main className={mainContainerClasses}>
                 {selectedMode === null ? (
                     <ModeSelector onSelectMode={handleSelectMode} />
                 ) : (
@@ -57,6 +67,8 @@ const App: React.FC = () => {
                     </div>
                 )}
             </main>
+            
+            {/* The flex-grow spacer pushes the footer down when content is shorter than the viewport. */}
             <div className="flex-grow" />
             <footer className="text-center py-4 text-xs text-stone-500 flex-shrink-0">
                 <p>Frutería DAX - Tu forma divertida de aprender DAX</p>
