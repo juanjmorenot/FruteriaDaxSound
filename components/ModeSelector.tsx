@@ -19,10 +19,10 @@ const ModeSelector: React.FC<ModeSelectorProps> = ({ onSelectMode }) => {
     };
 
     const modeDetails: Record<GameMode, { description: string; bgColor: string; fontWeight: string; }> = {
-        [GameMode.Harvest]: { description: 'Aprende cada fórmula a tu propio ritmo.', bgColor: 'bg-amber-500', fontWeight: 'font-bold' },
-        [GameMode.Glossary]: { description: 'Busca y explora todas las fórmulas en la bodega.', bgColor: 'bg-orange-500', fontWeight: 'font-bold' },
-        [GameMode.Timed]: { description: 'Memoriza antes de que se acabe el tiempo.', bgColor: 'bg-rose-500', fontWeight: 'font-bold' },
-        [GameMode.Quiz]: { description: 'Pon a prueba tus conocimientos como granjero.', bgColor: 'bg-indigo-500', fontWeight: 'font-bold' },
+        [GameMode.Harvest]: { description: 'Aprende cada fórmula a tu propio ritmo.', bgColor: 'bg-amber-500 hover:bg-amber-600', fontWeight: 'font-bold' },
+        [GameMode.Glossary]: { description: 'Busca y explora todas las fórmulas en la bodega.', bgColor: 'bg-orange-500 hover:bg-orange-600', fontWeight: 'font-bold' },
+        [GameMode.Timed]: { description: 'Memoriza antes de que se acabe el tiempo.', bgColor: 'bg-rose-500 hover:bg-rose-600', fontWeight: 'font-bold' },
+        [GameMode.Quiz]: { description: 'Pon a prueba tus conocimientos como granjero.', bgColor: 'bg-indigo-500 hover:bg-indigo-600', fontWeight: 'font-bold' },
     }
     
     return (
@@ -34,8 +34,8 @@ const ModeSelector: React.FC<ModeSelectorProps> = ({ onSelectMode }) => {
                     className={`
                         rounded-3xl transition-all duration-300 ease-in-out shadow-lg text-white
                         ${modeDetails[mode].bgColor}
-                        hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02]
-                        w-full p-6 md:p-10 lg:p-14 flex items-center gap-4 md:gap-5 text-left
+                        hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02]
+                        w-full p-5 md:p-6 flex items-center gap-4 md:gap-5 text-left
                     `}
                 >
                     <span className="text-3xl md:text-4xl" aria-hidden="true">{getIconForMode(mode)}</span>

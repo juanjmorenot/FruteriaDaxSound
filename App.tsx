@@ -34,9 +34,9 @@ const App: React.FC = () => {
     };
 
     return (
-        <div className="h-screen bg-neutral-50 text-stone-700 flex flex-col">
-            {selectedMode === null && <Header />}
-            <main className={`container mx-auto p-4 md:p-8 pt-2 md:pt-4 flex-grow flex flex-col ${selectedMode ? 'justify-start' : 'justify-center'}`}>
+        <div className="h-screen bg-white text-stone-700 flex flex-col">
+            <Header />
+            <main className={`container mx-auto p-4 pt-2 md:p-8 md:pt-4 flex-grow flex flex-col justify-start`}>
                 {selectedMode === null ? (
                     <ModeSelector onSelectMode={handleSelectMode} />
                 ) : (
@@ -57,11 +57,9 @@ const App: React.FC = () => {
                     </div>
                 )}
             </main>
-             {selectedMode === null && (
-                <footer className="text-center py-4 text-xs text-stone-500 flex-shrink-0">
-                    <p>Frutería DAX - Tu forma divertida de aprender DAX</p>
-                </footer>
-            )}
+            <footer className="text-center py-4 text-xs text-stone-500 flex-shrink-0">
+                <p>Frutería DAX - Tu forma divertida de aprender DAX</p>
+            </footer>
         </div>
     );
 };
