@@ -36,13 +36,9 @@ const App: React.FC = () => {
     return (
         <div className="min-h-screen bg-neutral-50 text-stone-700 flex flex-col">
             {selectedMode === null && <Header />}
-            <main className={`container mx-auto p-4 md:p-8 flex-grow flex flex-col ${selectedMode ? 'justify-start' : ''}`}>
+            <main className={`container mx-auto p-4 md:p-8 flex-grow flex flex-col ${selectedMode ? 'justify-start' : 'justify-center'}`}>
                 {selectedMode === null ? (
-                    <>
-                        <div className="flex-grow" />
-                        <ModeSelector onSelectMode={handleSelectMode} />
-                        <div className="flex-grow-[2.5]" />
-                    </>
+                    <ModeSelector onSelectMode={handleSelectMode} />
                 ) : (
                     <div>
                          <div className="mb-6 text-left w-full max-w-4xl mx-auto">
