@@ -156,21 +156,36 @@ const QuizMode: React.FC = () => {
             <div className="max-w-5xl mx-auto text-center">
                 <h2 className="text-xl font-bold text-orange-500 mb-4 font-title">Elige tu Desafío</h2>
                 <p className="text-stone-600 mb-8 text-xs">Pon a prueba tus conocimientos de DAX de tres maneras diferentes.</p>
-                <div className="grid md:grid-cols-3 gap-8">
-                    <button onClick={() => handleStartQuiz('scenario')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
-                        <span className="text-5xl" role="img" aria-label="telephone">📞</span>
-                        <h3 className="font-bold text-lg mt-4 text-stone-800 font-title">Consultas</h3>
-                        <p className="text-xs mt-2 text-stone-500">Resuelve un problema de la frutería eligiendo la fórmula DAX correcta a partir de un caso práctico.</p>
+                <div className="flex flex-col gap-3 md:gap-4 w-full max-w-3xl mx-auto">
+                    <button
+                        onClick={() => handleStartQuiz('scenario')}
+                        className="w-full p-5 md:p-6 flex items-center gap-4 md:gap-5 text-left bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-in-out"
+                    >
+                        <span className="text-3xl md:text-4xl" role="img" aria-label="telephone">📞</span>
+                        <div className="flex-grow">
+                            <h3 className="font-bold text-lg md:text-xl text-stone-800 font-title">Consultas</h3>
+                            <p className="text-xs md:text-sm mt-1 text-stone-500 leading-tight">Resuelve un problema de la frutería eligiendo la fórmula DAX correcta a partir de un caso práctico.</p>
+                        </div>
                     </button>
-                     <button onClick={() => handleStartQuiz('syntax')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
-                        <span className="text-5xl" role="img" aria-label="recipe book">📖</span>
-                        <h3 className="font-bold text-lg mt-4 text-stone-800 font-title">Recetas</h3>
-                        <p className="text-xs mt-2 text-stone-500">Identifica la sintaxis correcta de una fórmula DAX para dominar su estructura y parámetros.</p>
+                     <button
+                        onClick={() => handleStartQuiz('syntax')}
+                        className="w-full p-5 md:p-6 flex items-center gap-4 md:gap-5 text-left bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-in-out"
+                     >
+                        <span className="text-3xl md:text-4xl" role="img" aria-label="recipe book">📖</span>
+                        <div className="flex-grow">
+                             <h3 className="font-bold text-lg md:text-xl text-stone-800 font-title">Recetas</h3>
+                             <p className="text-xs md:text-sm mt-1 text-stone-500 leading-tight">Identifica la sintaxis correcta de una fórmula DAX para dominar su estructura y parámetros.</p>
+                        </div>
                     </button>
-                    <button onClick={() => handleStartQuiz('usage')} className="p-6 bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
-                        <span className="text-5xl" role="img" aria-label="magnifying glass">🔎</span>
-                        <h3 className="font-bold text-lg mt-4 text-stone-800 font-title">Identificar la Fruta</h3>
-                        <p className="text-xs mt-2 text-stone-500">Te damos una descripción (el "uso") y debes identificar la fórmula correcta entre 6 opciones.</p>
+                    <button
+                        onClick={() => handleStartQuiz('usage')}
+                        className="w-full p-5 md:p-6 flex items-center gap-4 md:gap-5 text-left bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-in-out"
+                    >
+                        <span className="text-3xl md:text-4xl" role="img" aria-label="magnifying glass">🔎</span>
+                        <div className="flex-grow">
+                            <h3 className="font-bold text-lg md:text-xl text-stone-800 font-title">Identificar la Fruta</h3>
+                            <p className="text-xs md:text-sm mt-1 text-stone-500 leading-tight">Te damos una descripción (el "uso") y debes identificar la fórmula correcta entre 6 opciones.</p>
+                        </div>
                     </button>
                 </div>
             </div>
