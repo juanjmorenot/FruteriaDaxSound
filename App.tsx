@@ -34,7 +34,7 @@ const App: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-neutral-50 text-stone-700 flex flex-col">
+        <div className="h-screen bg-neutral-50 text-stone-700 flex flex-col">
             {selectedMode === null && <Header />}
             <main className={`container mx-auto p-4 md:p-8 flex-grow flex flex-col ${selectedMode ? 'justify-start' : 'justify-center'}`}>
                 {selectedMode === null ? (
@@ -58,7 +58,7 @@ const App: React.FC = () => {
                 )}
             </main>
              {selectedMode === null && (
-                <footer className="text-center py-4 text-xs text-stone-500">
+                <footer className="text-center py-4 text-xs text-stone-500 flex-shrink-0">
                     <p>Frutería DAX - Tu forma divertida de aprender DAX</p>
                 </footer>
             )}
