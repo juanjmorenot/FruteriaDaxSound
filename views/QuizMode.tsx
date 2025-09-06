@@ -134,13 +134,13 @@ const QuizMode: React.FC = () => {
 
     const getButtonClass = (option: string): string => {
         if (answerState === 'unanswered') {
-            return "bg-white hover:bg-orange-50/50";
+            return "bg-white hover:bg-slate-50";
         }
         if (option === questions[currentQuestionIndex].correctAnswer) {
-            return "bg-teal-100 border-teal-500 scale-105";
+            return "bg-emerald-100 border-emerald-500 scale-105";
         }
         if (option === selectedAnswer && option !== questions[currentQuestionIndex].correctAnswer) {
-            return "bg-rose-100 border-rose-500";
+            return "bg-red-100 border-red-500";
         }
         return "bg-white opacity-60";
     };
@@ -149,13 +149,13 @@ const QuizMode: React.FC = () => {
         return (
             <>
                 <Confetti />
-                <div className="max-w-3xl mx-auto text-center p-8 bg-white rounded-3xl shadow-xl border border-stone-200/80">
-                    <h2 className="text-xl font-bold text-orange-500 mb-2 font-title">¡Desafío completado!</h2>
-                    <p className="text-stone-600 text-sm mb-6">Tu puntuación final es:</p>
-                    <div className="text-4xl font-extrabold text-orange-500 mb-8">{score} puntos</div>
+                <div className="max-w-3xl mx-auto text-center p-8 bg-white rounded-3xl shadow-xl border border-slate-200/80">
+                    <h2 className="text-xl font-bold text-emerald-500 mb-2 font-title">¡Desafío completado!</h2>
+                    <p className="text-slate-600 text-sm mb-6">Tu puntuación final es:</p>
+                    <div className="text-4xl font-extrabold text-emerald-500 mb-8">{score} puntos</div>
                     <button 
                         onClick={handlePlayAgain} 
-                        className="px-8 py-3 bg-orange-500 text-white font-bold rounded-full shadow-lg hover:bg-orange-600 transition transform hover:scale-105 hover:shadow-orange-500/30 text-xs"
+                        className="px-8 py-3 bg-emerald-500 text-white font-bold rounded-full shadow-lg hover:bg-emerald-600 transition transform hover:scale-105 hover:shadow-emerald-300/30 text-sm"
                     >
                         Jugar de Nuevo
                     </button>
@@ -168,38 +168,38 @@ const QuizMode: React.FC = () => {
         return (
             <div className="max-w-5xl mx-auto text-center">
                 <div ref={challengeSelectionRef} className="pt-[1.125vh]">
-                    <h2 className="text-xl font-bold text-orange-500 mb-4 font-title">Elige tu Desafío</h2>
+                    <h2 className="text-xl font-bold text-emerald-500 mb-4 font-title">Elige tu Desafío</h2>
                 </div>
-                <p className="text-stone-600 mb-8 text-xs">Pon a prueba tus conocimientos de DAX de tres maneras diferentes.</p>
+                <p className="text-slate-600 mb-8 text-sm">Pon a prueba tus conocimientos de DAX de tres maneras diferentes.</p>
                 <div className="flex flex-col gap-3 md:gap-4 w-full max-w-3xl mx-auto">
                     <button
                         onClick={() => handleStartQuiz('scenario')}
-                        className="w-full p-5 md:p-6 flex items-center gap-4 md:gap-5 text-left bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-in-out"
+                        className="group w-full p-5 md:p-6 flex items-center gap-4 md:gap-5 text-left bg-white rounded-2xl shadow-lg border-2 border-slate-200/80 hover:border-emerald-500 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-in-out"
                     >
-                        <span className="text-3xl md:text-4xl" role="img" aria-label="telephone">📞</span>
+                        <span className="p-3 rounded-full bg-emerald-100/70 text-2xl" role="img" aria-label="phone">📞</span>
                         <div className="flex-grow">
-                            <h3 className="font-bold text-lg md:text-xl text-stone-800 font-title">Consultas</h3>
-                            <p className="text-xs md:text-sm mt-1 text-stone-500 leading-tight">Resuelve un problema de la frutería eligiendo la fórmula DAX correcta a partir de un caso práctico.</p>
+                            <h3 className="font-bold text-lg md:text-xl text-emerald-600 font-title">Consultas</h3>
+                            <p className="text-xs md:text-sm mt-1 text-slate-500 leading-tight">Resuelve un problema de la frutería eligiendo la fórmula DAX correcta a partir de un caso práctico.</p>
                         </div>
                     </button>
                      <button
                         onClick={() => handleStartQuiz('syntax')}
-                        className="w-full p-5 md:p-6 flex items-center gap-4 md:gap-5 text-left bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-in-out"
+                        className="w-full p-5 md:p-6 flex items-center gap-4 md:gap-5 text-left bg-white rounded-2xl shadow-lg border-2 border-slate-200/80 hover:border-sky-500 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-in-out"
                      >
-                        <span className="text-3xl md:text-4xl" role="img" aria-label="recipe book">📖</span>
+                        <span className="p-3 rounded-full bg-sky-100/70 text-2xl" role="img" aria-label="scroll">📜</span>
                         <div className="flex-grow">
-                             <h3 className="font-bold text-lg md:text-xl text-stone-800 font-title">Recetas</h3>
-                             <p className="text-xs md:text-sm mt-1 text-stone-500 leading-tight">Identifica la sintaxis correcta de una fórmula DAX para dominar su estructura y parámetros.</p>
+                             <h3 className="font-bold text-lg md:text-xl text-sky-600 font-title">Recetas</h3>
+                             <p className="text-xs md:text-sm mt-1 text-slate-500 leading-tight">Identifica la sintaxis correcta de una fórmula DAX para dominar su estructura y parámetros.</p>
                         </div>
                     </button>
                     <button
                         onClick={() => handleStartQuiz('usage')}
-                        className="w-full p-5 md:p-6 flex items-center gap-4 md:gap-5 text-left bg-white rounded-3xl shadow-lg border-2 border-transparent hover:border-orange-500 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-in-out"
+                        className="w-full p-5 md:p-6 flex items-center gap-4 md:gap-5 text-left bg-white rounded-2xl shadow-lg border-2 border-slate-200/80 hover:border-amber-500 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-in-out"
                     >
-                        <span className="text-3xl md:text-4xl" role="img" aria-label="magnifying glass">🔎</span>
+                        <span className="p-3 rounded-full bg-amber-100/70 text-2xl" role="img" aria-label="magnifying glass">🔍</span>
                         <div className="flex-grow">
-                            <h3 className="font-bold text-lg md:text-xl text-stone-800 font-title">Identificar la Fruta</h3>
-                            <p className="text-xs md:text-sm mt-1 text-stone-500 leading-tight">Te damos una descripción (el "uso") y debes identificar la fórmula correcta entre 6 opciones.</p>
+                            <h3 className="font-bold text-lg md:text-xl text-amber-600 font-title">Identificar la Fruta</h3>
+                            <p className="text-xs md:text-sm mt-1 text-slate-500 leading-tight">Te damos una descripción (el "uso") y debes identificar la fórmula correcta entre 6 opciones.</p>
                         </div>
                     </button>
                 </div>
@@ -212,38 +212,38 @@ const QuizMode: React.FC = () => {
     const currentQuestion = questions[currentQuestionIndex];
 
     return (
-        <div className="max-w-3xl mx-auto p-6 bg-white rounded-3xl shadow-xl border border-stone-200/80">
+        <div className="max-w-3xl mx-auto p-6 bg-white rounded-3xl shadow-xl border border-slate-200/80">
             <div className="flex justify-between items-center mb-4">
-                 <h2 className="text-xl font-bold text-orange-500 flex items-center gap-3 font-title">
+                 <h2 className="text-xl font-bold text-emerald-500 flex items-center gap-3 font-title">
                     {quizType === 'scenario' && 
                         <>
-                            <span className="text-2xl" role="img" aria-label="telephone">📞</span>
+                            <span className="text-2xl" role="img" aria-label="phone">📞</span>
                             <span>Consultas</span>
                         </> 
                     }
                     {quizType === 'usage' &&
                         <>
-                            <span className="text-2xl" role="img" aria-label="magnifying glass">🔎</span>
+                            <span className="text-2xl" role="img" aria-label="magnifying glass">🔍</span>
                             <span>¿Qué fruta es?</span>
                         </>
                     }
                     {quizType === 'syntax' &&
                         <>
-                             <span className="text-2xl" role="img" aria-label="recipe book">📖</span>
+                             <span className="text-2xl" role="img" aria-label="scroll">📜</span>
                             <span>Recetas</span>
                         </>
                     }
                 </h2>
-                <div className="font-bold text-stone-600 text-sm">
+                <div className="font-bold text-slate-600 text-sm">
                     {currentQuestionIndex + 1}/{questions.length} | Puntos: {score}
                 </div>
             </div>
             
-            <div className="mb-6 p-4 bg-orange-100/70 rounded-2xl">
-                <p className="font-semibold text-stone-800 text-base leading-[1.125]">{currentQuestion.scenario}</p>
+            <div className="mb-6 p-4 bg-emerald-50 rounded-2xl">
+                <p className="font-semibold text-emerald-900 text-base leading-tight">{currentQuestion.scenario}</p>
             </div>
 
-            <div className={`grid ${quizType === 'usage' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 md:grid-cols-2'} gap-4`}>
+            <div className={`grid ${quizType === 'usage' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 md:grid-cols-2'} gap-3`}>
                 {currentQuestion.options.map((option, index) => (
                     <button
                         key={index}
@@ -254,19 +254,19 @@ const QuizMode: React.FC = () => {
                          {quizType === 'scenario' || quizType === 'syntax' ? (
                             <pre className="text-sm whitespace-pre-wrap break-words font-sans"><code>{option}</code></pre>
                         ) : (
-                            <code className="text-sm">{option}</code>
+                            <code className="text-sm font-bold">{option}</code>
                         )}
                     </button>
                 ))}
             </div>
 
             {answerState !== 'unanswered' && (
-                <div className={`mt-6 p-4 rounded-xl ${answerState === 'correct' ? 'bg-teal-50 text-teal-900' : 'bg-rose-50 text-rose-900'}`}>
+                <div className={`mt-6 p-4 rounded-xl ${answerState === 'correct' ? 'bg-emerald-50 text-emerald-900' : 'bg-red-50 text-red-900'}`}>
                     <h3 className="font-bold text-sm">{answerState === 'correct' ? `¡Correcto! +${pointsAwarded} puntos` : '¡Incorrecto!'}</h3>
                     <p className="mt-1 text-xs">{currentQuestion.explanation}</p>
                     <button
                         onClick={handleNextQuestion}
-                        className="mt-4 px-6 py-2 bg-orange-500 text-white font-bold rounded-full shadow-md hover:bg-orange-600 transition text-xs"
+                        className="mt-4 px-6 py-2 bg-emerald-500 text-white font-bold rounded-full shadow-md hover:bg-emerald-600 transition text-xs"
                     >
                         {currentQuestionIndex < questions.length - 1 ? 'Siguiente Pregunta' : 'Finalizar'}
                     </button>

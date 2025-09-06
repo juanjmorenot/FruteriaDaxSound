@@ -64,14 +64,14 @@ const TimedMode: React.FC = () => {
         return (
             <>
                 <Confetti />
-                <div className="max-w-3xl mx-auto text-center p-8 bg-white rounded-3xl shadow-xl border border-stone-200/80">
-                    <h2 className="text-xl font-bold text-orange-500 mb-2 font-title">¡Ronda completada!</h2>
-                    <p className="text-stone-600 text-sm mb-6">
+                <div className="max-w-3xl mx-auto text-center p-8 bg-white rounded-3xl shadow-xl border border-slate-200/80">
+                    <h2 className="text-xl font-bold text-emerald-500 mb-2 font-title">¡Ronda completada!</h2>
+                    <p className="text-slate-600 text-sm mb-6">
                         Has repasado las {SESSION_LENGTH} frutas de esta sesión. ¡Sigue así para memorizarlas todas!
                     </p>
                     <button 
                         onClick={startNewSession} 
-                        className="px-8 py-3 bg-orange-500 text-white font-bold rounded-full shadow-lg hover:bg-orange-600 transition transform hover:scale-105 hover:shadow-orange-500/30 text-sm"
+                        className="px-8 py-3 bg-emerald-500 text-white font-bold rounded-full shadow-lg hover:bg-emerald-600 transition transform hover:scale-105 hover:shadow-emerald-300/30 text-sm"
                     >
                         Jugar de Nuevo
                     </button>
@@ -82,17 +82,17 @@ const TimedMode: React.FC = () => {
 
     if (!isActive) {
         return (
-            <div className="text-center p-8 bg-white rounded-3xl shadow-xl shadow-orange-500/10 max-w-lg mx-auto border border-stone-200/80">
-                 <h2 className="text-xl font-bold text-orange-500 mb-4 flex justify-center items-center gap-3 font-title">
-                    <span className="text-3xl">⏱️</span>
+            <div className="text-center p-8 bg-white rounded-3xl shadow-xl shadow-slate-200/50 max-w-lg mx-auto border border-slate-200/80">
+                 <h2 className="text-xl font-bold text-emerald-500 mb-4 flex justify-center items-center gap-3 font-title">
+                    <span className="text-3xl">⏳</span>
                     <span>Memoriza la Fruta</span>
                  </h2>
-                <p className="text-stone-600 mb-6 text-xs">
+                <p className="text-slate-600 mb-6 text-sm">
                     Memoriza toda la información de la fórmula antes de que se acabe el tiempo. ¡Completarás una racha de {SESSION_LENGTH} frutas!
                 </p>
                 <button
                     onClick={startNewSession}
-                    className="px-8 py-3 bg-orange-500 text-white font-bold rounded-full shadow-lg hover:bg-orange-600 transition transform hover:scale-105 hover:shadow-orange-500/30 text-sm"
+                    className="px-8 py-3 bg-emerald-500 text-white font-bold rounded-full shadow-lg hover:bg-emerald-600 transition transform hover:scale-105 hover:shadow-emerald-300/30 text-sm"
                 >
                     ¡Comenzar a exprimir!
                 </button>
@@ -107,43 +107,43 @@ const TimedMode: React.FC = () => {
     const progressPercentage = Math.max(0, (timeLeft / TIME_LIMIT) * 100);
 
     const getProgressBarColor = (percentage: number): string => {
-        if (percentage > 75) {
-            return 'bg-teal-500';
+        if (percentage > 60) {
+            return 'bg-emerald-500';
         }
         if (percentage > 25) {
-            return 'bg-amber-400';
+            return 'bg-yellow-400';
         }
-        return 'bg-rose-500';
+        return 'bg-red-500';
     };
 
     const progressBarColor = getProgressBarColor(progressPercentage);
 
     return (
         <div className="max-w-3xl mx-auto">
-            <div className="relative p-6 bg-white rounded-3xl shadow-xl shadow-orange-500/10 border border-stone-200/80">
-                <div className="text-center mb-4 pb-4 border-b border-stone-200">
-                    <p className="font-bold text-base text-stone-500">Fruta {currentIndex + 1} de {SESSION_LENGTH}</p>
+            <div className="relative p-6 bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200/80">
+                <div className="text-center mb-4 pb-4 border-b border-slate-200">
+                    <p className="font-bold text-base text-slate-500">Fruta {currentIndex + 1} de {SESSION_LENGTH}</p>
                     <p className="text-2xl font-extrabold"><span className="text-3xl">{theme.icon}</span> {formula.name}</p>
                     <p className={`font-bold mt-1 ${theme.color} text-sm`}>{formula.category}</p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-4 text-sm">
                     <div>
-                        <h3 className={`font-bold ${theme.color} text-sm`}>Uso:</h3>
-                        <p className="text-stone-600 text-xs">{formula.usage}</p>
+                        <h3 className={`font-bold ${theme.color}`}>Uso:</h3>
+                        <p className="text-slate-600">{formula.usage}</p>
                     </div>
                      <div>
-                        <h3 className={`font-bold ${theme.color} text-sm`}>Sintaxis:</h3>
-                        <pre className="text-xs bg-neutral-100 p-3 rounded-xl whitespace-pre-wrap break-words"><code>{formula.syntax}</code></pre>
+                        <h3 className={`font-bold ${theme.color}`}>Sintaxis:</h3>
+                        <pre className="text-xs bg-slate-100 p-3 rounded-xl whitespace-pre-wrap break-words"><code>{formula.syntax}</code></pre>
                     </div>
                      <div>
-                        <h3 className={`font-bold ${theme.color} text-sm`}>Ejemplo:</h3>
-                        <pre className="text-xs bg-neutral-100 p-3 rounded-xl whitespace-pre-wrap break-words"><code>{formula.example}</code></pre>
+                        <h3 className={`font-bold ${theme.color}`}>Ejemplo:</h3>
+                        <pre className="text-xs bg-slate-100 p-3 rounded-xl whitespace-pre-wrap break-words"><code>{formula.example}</code></pre>
                     </div>
                 </div>
 
                 <div className="mt-6">
-                    <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+                    <div className="w-full bg-slate-200 rounded-full h-4 overflow-hidden">
                         <div
                             className={`${progressBarColor} h-4 rounded-full transition-all duration-200 ease-linear`}
                             style={{ width: `${progressPercentage}%` }}

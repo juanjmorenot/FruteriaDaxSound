@@ -1,14 +1,14 @@
 import { DAXFormula, DAXCategory, QuizQuestion } from './types';
 
 export const CATEGORY_THEME: Record<DAXCategory, { color: string; bgColor: string; icon: string }> = {
-    [DAXCategory.Aggregation]: { color: 'text-red-600', bgColor: 'bg-red-100', icon: '🍓' },
-    [DAXCategory.Filter]: { color: 'text-orange-600', bgColor: 'bg-orange-100', icon: '🍊' },
-    [DAXCategory.TimeIntelligence]: { color: 'text-indigo-500', bgColor: 'bg-indigo-100', icon: '🫐' },
-    [DAXCategory.Logical]: { color: 'text-lime-600', bgColor: 'bg-lime-100', icon: '🍐' },
-    [DAXCategory.Information]: { color: 'text-purple-600', bgColor: 'bg-purple-100', icon: '🍇' },
-    [DAXCategory.Relationship]: { color: 'text-rose-600', bgColor: 'bg-rose-100', icon: '🍒' },
-    [DAXCategory.Text]: { color: 'text-amber-500', bgColor: 'bg-amber-100', icon: '🍋' },
-    [DAXCategory.Ranking]: { color: 'text-teal-500', bgColor: 'bg-teal-100', icon: '🥝' },
+    [DAXCategory.Aggregation]: { color: 'text-red-500', bgColor: 'bg-red-100', icon: '🍓' },
+    [DAXCategory.Filter]: { color: 'text-orange-500', bgColor: 'bg-orange-100', icon: '🍊' },
+    [DAXCategory.TimeIntelligence]: { color: 'text-sky-500', bgColor: 'bg-sky-100', icon: '🫐' },
+    [DAXCategory.Logical]: { color: 'text-lime-600', bgColor: 'bg-lime-100', icon: '🍏' },
+    [DAXCategory.Information]: { color: 'text-violet-500', bgColor: 'bg-violet-100', icon: '🍇' },
+    [DAXCategory.Relationship]: { color: 'text-pink-500', bgColor: 'bg-pink-100', icon: '🍒' },
+    [DAXCategory.Text]: { color: 'text-yellow-500', bgColor: 'bg-yellow-100', icon: '🍋' },
+    [DAXCategory.Ranking]: { color: 'text-teal-500', bgColor: 'bg-teal-100', icon: '🎗️' },
 };
 
 export const DAX_FORMULAS: DAXFormula[] = [
@@ -172,7 +172,7 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
     },
     {
         scenario: "Quieres crear una columna 'NombreCompleto' en la tabla 'Clientes' uniendo el nombre y el apellido, separados por un espacio.",
-        options: ["Clientes[Nombre] & \" \" & Clientes[Apellido]", "CONCATENATE(Clientes[Nombre], Clientes[Apellido])", "COMBINEVALUES(\" \", Clientes[Nombre], Clientes[Apellido])", "ADD(Clientes[Nombre], \" \", Clientes[Apellido])"],
+        options: ["Clientes[Nombre] & \" \" & Clientes[Apellido]", "CONCATENATE(Clientes[Nombre], Clientes[Apellido])", "COMBINEVALUES(\" \", Clientes[Nombre], Clentes[Apellido])", "ADD(Clientes[Nombre], \" \", Clientes[Apellido])"],
         correctAnswer: "Clientes[Nombre] & \" \" & Clientes[Apellido]",
         explanation: "El operador ampersand (&) es la forma más concisa y común de concatenar cadenas de texto en DAX."
     },

@@ -41,16 +41,16 @@ const HarvestMode: React.FC = () => {
                 <Flashcard formula={shuffledFormulas[currentIndex]} />
             </div>
             <div className="mt-8 mb-4 flex items-center justify-center gap-4 w-full max-w-2xl flex-shrink-0">
-                <button onClick={handlePrev} className="p-3 bg-white rounded-full shadow-md hover:bg-orange-50 transition transform hover:scale-110" aria-label="Anterior">
+                <button onClick={handlePrev} className="p-3 bg-white rounded-full shadow-md hover:bg-slate-50 transition transform hover:scale-110" aria-label="Anterior">
                     <Icon name="prev" />
                 </button>
-                <div className="text-center font-bold text-stone-500 w-20 text-sm">
+                <div className="text-center font-bold text-slate-500 w-20 text-sm">
                     {currentIndex + 1} / {shuffledFormulas.length}
                 </div>
-                <button onClick={handleNext} className="p-3 bg-white rounded-full shadow-md hover:bg-orange-50 transition transform hover:scale-110" aria-label="Siguiente">
+                <button onClick={handleNext} className="p-3 bg-white rounded-full shadow-md hover:bg-slate-50 transition transform hover:scale-110" aria-label="Siguiente">
                     <Icon name="next" />
                 </button>
-                 <button onClick={handleShuffle} className="px-5 py-3 bg-orange-500 text-white font-bold rounded-full shadow-lg hover:bg-orange-600 transition transform hover:scale-105 hover:shadow-orange-500/30 text-sm">
+                 <button onClick={handleShuffle} className="px-5 py-3 bg-emerald-500 text-white font-bold rounded-full shadow-lg hover:bg-emerald-600 transition transform hover:scale-105 hover:shadow-emerald-300/30 text-sm">
                     Barajar
                 </button>
             </div>
