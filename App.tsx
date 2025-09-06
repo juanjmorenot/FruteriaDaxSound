@@ -57,9 +57,11 @@ const App: React.FC = () => {
                     </div>
                 )}
             </main>
-             <footer className="text-center py-4 text-sm text-stone-500">
-                <p>Frutería DAX - Tu forma divertida de aprender DAX</p>
-            </footer>
+             {selectedMode === null && (
+                <footer className="text-center py-4 text-sm text-stone-500">
+                    <p>Frutería DAX - Tu forma divertida de aprender DAX</p>
+                </footer>
+            )}
         </div>
     );
 };
